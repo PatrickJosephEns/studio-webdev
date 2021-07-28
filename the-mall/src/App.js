@@ -5,6 +5,7 @@ import Routes from './routes';
 // Firebase
 import firebase from "@firebase/app"
 import { FirebaseAuthProvider, FirebaseAuthConsumer, IfFirebaseAuthed } from "@react-firebase/auth";
+import 'firebase/auth'
 
 // Firebase Configuration and Object
 import db, { firebaseConfig } from './firebase-config'
