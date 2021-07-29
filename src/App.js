@@ -24,7 +24,8 @@ firebase.auth().onAuthStateChanged((user) => {
 const App = () => {
   return (
     <React.Fragment>
-      <Routes />
+      {/* Need to pass DB through to routes so that it can be passed to any component */}
+      <Routes db={db} />
     </React.Fragment>
   )
 }
