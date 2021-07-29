@@ -1,0 +1,48 @@
+#login-background {
+  min-height: 100%;
+  min-width: 1024px;
+
+  width: 100%;
+  height: auto;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: -1;
+}
+
+#login-panel {
+    /* margin: 15px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    /* Move the div back 50% of its own width and height */
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    /* Styling */
+    color: white; /* Text Colour */
+    padding: 15px;
+    background-color: rgba(0,0,0,.2);
+    border: 3px solid rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+
+/* Login title */
+#login-panel h3 {
+    text-shadow: rgba(0,0,0,0.8) 1px 1px 5px;
+}
+
+#login-panel button {
+  margin: 5px
+}
+
+/* Keeping the image centered for mobile devices */
+@media screen and (max-width: 1024px) { 
+    #login-background {
+      left: 50%;
+      margin-left: -512px;   /* 50% */
+    }
+  }
