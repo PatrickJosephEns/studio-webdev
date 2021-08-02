@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import Routes from './routes';
+import Navbar from './components/layouts/navbar';
 
 // Firebase
 import firebase from "@firebase/app"
@@ -24,6 +25,7 @@ firebase.auth().onAuthStateChanged((user) => {
 const App = () => {
   return (
     <React.Fragment>
+      <Navbar /> 
       {/* Need to pass DB through to routes so that it can be passed to any component */}
       <Routes db={db} />
     </React.Fragment>
