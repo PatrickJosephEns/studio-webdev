@@ -12,6 +12,8 @@ import 'firebase/auth'
 import db, { firebaseConfig } from './firebase-config'
 import Footer from './components/layouts/footer';
 
+
+
 // Setting method for when a new user joins the system
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
