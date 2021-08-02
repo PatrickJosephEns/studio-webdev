@@ -9,6 +9,7 @@ import 'firebase/auth'
 
 // Firebase Configuration and Object
 import db, { firebaseConfig } from './firebase-config'
+import Footer from './components/layouts/footer';
 
 // Setting method for when a new user joins the system
 firebase.auth().onAuthStateChanged((user) => {
@@ -26,6 +27,7 @@ const App = () => {
     <React.Fragment>
       {/* Need to pass DB through to routes so that it can be passed to any component */}
       <Routes db={db} />
+      <Footer />
     </React.Fragment>
   )
 }
