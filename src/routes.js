@@ -10,8 +10,10 @@ class Routes extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
+          <div className="App">
             <Route path="/" component={home} exact />
             <Route path="/login" component={login} exact />
+          </div>
         </Switch>
       </BrowserRouter>
     )
