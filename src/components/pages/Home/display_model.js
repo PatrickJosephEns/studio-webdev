@@ -30,7 +30,7 @@ function Display_model() {
     const ref = useRef();
 
     return <div id="homeModel">
-        <Canvas shadows dpr={[1, 2]} camera={{ fov: 50 }}>
+        <Canvas shadows dpr={[1, 2]} camera={{ fov: 50, position: [5,8,5]}}>
             {/* <Stars /> */}
             <Suspense fallback={null}>
                 <Stage
@@ -40,10 +40,9 @@ function Display_model() {
                     environment="city"
                 >
                     <IphoneModel />
-                    {/* <HeadphoneModel /> */}
                 </Stage>
             </Suspense>
-            <OrbitControls ref={ref} autoRotate />
+            <OrbitControls ref={ref} autoRotate enableZoom={false} enablePan={false} enableRotate={false}/>
         </Canvas>
     </div>
 }
