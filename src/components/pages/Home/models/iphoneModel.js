@@ -24,8 +24,7 @@ export default function IphoneModel(props) {
 
   return (
     <animated.group ref={group} {...props} dispose={null}
-      onPointerEnter={() => setActive(true)}
-      onPointerLeave={() => setActive(false)}
+      onClick={() => setActive(!active)}
       scale-x={scale}
       scale-y={scale}
       scale-z={scale}
