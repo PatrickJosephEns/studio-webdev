@@ -12,7 +12,7 @@ function Home() {
           <p class="paragraph">Experience the future of shopping</p>
         </div>
       </div>
-      <Display_shops />
+      {/* <Display_shops /> */}
     </div>
   );
 }

@@ -2,8 +2,10 @@ import React, { Suspense, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 
 import { Flex, Box } from "@react-three/flex";
-import { Box as Cube, Sphere, useAspect } from "@react-three/drei";
+import { Box as Cube, Sphere, useAspect, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
+
+import './display_shops.css'
 
 const state = {
     top: 0,
@@ -31,23 +33,44 @@ function StoreBall(props) {
     </Box>
 }
 
+function Layout() {
+    const group = useRef();
+    const { size } = useThree();
+    const [vpWidth] = useAspect("cover", size.width, size.height);
+    const vec = new THREE.Vector3();
 
+    console.log(vpWidth)
+
+    // useFrame(() =>
+    //     group.current.position.lerp(vec.set(-vpWidth / 2, state.top + 8, -10), 0.1)
+    // );
+
+    return <group ref={group} position={[0, 0, 0]}>
+        <Flex size={[6, 0, 0]}
+            flexDirection="row"
+            wrap="wrap"
+            centerAnchor
+            justifyContent="center"
+            alignItems="center">
+            {[...Array(25).keys()].map(() => {
+                return <StoreBall color={'blue'} />
+            })}
+        </Flex>
+    </group>
+}
 
 class Display_shops extends React.Component {
     render() {
-        return <Canvas shadows={true}>
-            <hemisphereLight intensity={1} />
-            <directionalLight intensity={0.5} />
+        return <div id="canvas">
+            <Canvas shadows={true}>
+                <OrbitControls />
 
-            <Flex size={[300, 300, 300]} flexDirection="row" flexWrap="wrap">
-                <StoreBall color={'blue'} />
-                <StoreBall color={'red'} />
-                <StoreBall color={'yellow'} />
-                <StoreBall color={'green'} />
-                <StoreBall color={'purple'} />
+                <hemisphereLight intensity={.4} />
+                <directionalLight intensity={0.5} />
 
-            </Flex>
-        </Canvas>
+                <Layout />
+            </Canvas>
+        </div>
     }
 }
 
