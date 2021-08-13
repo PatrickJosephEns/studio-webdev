@@ -19,6 +19,11 @@
     height: 700px;
 }
 
+#viewShopsBtn {
+    min-height: 400px;
+    min-width: 400px;
+}
+
 .title {
     position: absolute;
     top: 50%;
@@ -35,5 +40,9 @@
     min-height: 700px;
 
     position: relative;
+}
 
+.rows {
+    /* Testing */
+    /* border: 3px solid black; */
 }

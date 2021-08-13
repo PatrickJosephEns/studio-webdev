@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@14islands/lerp": "^1.0.3",
+    "@14islands/r3f-scroll-rig": "^6.1.12",
     "@firebase/app": "^0.6.28",
     "@firebase/auth": "^0.16.8",
     "@firebase/firestore": "^2.3.9",

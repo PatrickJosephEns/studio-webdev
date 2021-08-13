@@ -1,10 +1,12 @@
 import './home.css'
 import Display_model from './display_model';
-import Display_shops from './display_shops';
+import View_shops from './view_shops';
+
+const Row = ({ children }) => <div className="row justify-content-center rows">{children}</div>
 
 function Home() {
   return (
-    <div id="content">
+    <>
       <div id="home">
         <Display_model />
         <div class="title">
@@ -12,8 +14,10 @@ function Home() {
           <p class="paragraph">Experience the future of shopping</p>
         </div>
       </div>
-      {/* <Display_shops /> */}
-    </div>
+      <Row>
+        <View_shops />
+      </Row>
+    </>
   );
 }
 
