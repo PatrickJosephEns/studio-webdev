@@ -21,7 +21,7 @@ class CreateStore extends React.Component {
     handleSubmit(e) {
         console.log(this.state.store_name)
 
-        this.props.db.collection("store").add({
+        this.props.db.collection("stores").add({
             owner_id: firebase.auth().currentUser.uid,
             store_name: this.state.store_name,
         })

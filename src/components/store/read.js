@@ -1,14 +1,12 @@
 import React from 'react';
 import { FirestoreCollection } from 'react-firestore';
 
-import ShareListButton from './ShareListButton';
-
-class OwnedList extends React.Component {
+class ReadStores extends React.Component {
 
     displayStores() {
         return (<FirestoreCollection
-            path={"store/"}
-            sort={"text:asc"}
+            path="stores"
+            sort={"store_name:asc"}
             render={({ isLoading, data }) => {
                 if (isLoading) {
                     return (<div class="card list mx-auto">
@@ -16,13 +14,13 @@ class OwnedList extends React.Component {
                     </div>);
                 } else {
                     return (<div class="card list mx-auto">
-
+                        <h1>All the stores</h1>
                         <div class="card-body">
                             <ul>
-                                {data.map(data => (
-                                    <li>
-                                        {data.store_name}
-                                    </li>
+                                {data.map(store => (
+                                    <h2>
+                                        {store.store_name}
+                                    </h2>
                                 ))}
                             </ul>
                         </div>
@@ -39,4 +37,4 @@ class OwnedList extends React.Component {
     }
 }
 
-export default OwnedList
+export default ReadStores
