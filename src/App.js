@@ -5,6 +5,7 @@ import Navbar from './components/layouts/navbar';
 
 // Firebase
 import firebase from "@firebase/app"
+import { FirestoreProvider } from 'react-firestore'
 import { FirebaseAuthProvider, FirebaseAuthConsumer, IfFirebaseAuthed } from "@react-firebase/auth";
 import 'firebase/auth'
 
@@ -25,12 +26,19 @@ firebase.auth().onAuthStateChanged((user) => {
 
 const App = () => {
   return (
-    <React.Fragment>
-      <Navbar />
-      {/* Need to pass DB through to routes so that it can be passed to any component */}
-      <Routes db={db} />
-      <Footer />
-    </React.Fragment>
+    <FirebaseAuthProvider {...firebaseConfig} firebase={firebase}>
+      <React.Fragment>
+        <Navbar />
+        {/* Need to pass DB through to routes so that it can be passed to any component */}
+        {/* <IfFirebaseAuthed> */}
+          <FirestoreProvider firebase={firebase}>
+            <Routes db={db} />
+          </FirestoreProvider>
+        {/* </IfFirebaseAuthed> */}
+
+        <Footer />
+      </React.Fragment>
+    </FirebaseAuthProvider>
   )
 }
 
