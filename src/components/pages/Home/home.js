@@ -1,6 +1,6 @@
 import './home.css'
 import Display_model from './display_model';
-import View_shops from './view_shops';
+import Display_shops from './display_shops';
 
 const Row = ({ children }) => <div className="row justify-content-center rows">{children}</div>
 
@@ -15,7 +15,7 @@ function Home() {
         </div>
       </div>
       <Row>
-        <View_shops />
+        <Display_shops />
       </Row>
     </>
   );
