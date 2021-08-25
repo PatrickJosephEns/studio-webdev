@@ -10,6 +10,9 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
 
+import Avatar from "@material-ui/core/Avatar";
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
 
 function NavBar() {
 
@@ -24,27 +27,30 @@ function NavBar() {
 
   const classes = useStyles();
   return (
-      <AppBar position="static" style={{ background: '#8C8C8C', flexGrow: 1 }} >
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" href="/">
-            <HomeIcon />
-          </IconButton>
+    <AppBar position="static" style={{ background: 'rgba(0,0,0,0.4)', flexGrow: 1 }} >
+      <Toolbar>
+        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" href="/">
+          <HomeIcon />
+        </IconButton>
 
-          <Typography variant="h6" className={classes.title} ahref="/">
-            The Mall
-          </Typography>
+        <Typography variant="h6" className={classes.title} ahref="/">
+          The Mall
+        </Typography>
 
-          <FirebaseAuthConsumer>
+        <FirebaseAuthConsumer>
+          {({ isSignedIn }) => {
+            if (!isSignedIn) {
+              return <Button href="/login" variant="contained" color="primary">Login</Button>
+            }
+            return <Button onClick={() => { firebase.auth().signOut() }} variant="contained" color="secondary">Log Out</Button>
+          }}
+        </FirebaseAuthConsumer>
 
-            {({ isSignedIn }) => {
-              if (!isSignedIn) {
-                return <Button href="/login" variant="contained" color="primary">Login</Button>
-              }
-              return <Button onClick={() => { firebase.auth().signOut() }} variant="contained" color="secondary">Log Out</Button>
-            }}
-          </FirebaseAuthConsumer>
-        </Toolbar>
-      </AppBar>
+        <IconButton href="/profile">
+          <AccountCircle />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   );
 }
 

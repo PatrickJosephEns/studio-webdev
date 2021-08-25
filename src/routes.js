@@ -4,6 +4,7 @@ import React from 'react';
 // Page Components Here
 import login from './components/pages/Login/login'
 import Home from './components/pages/Home/home';
+import Profile from './components/user/Profile';
 
 class Routes extends React.Component {
   constructor(props) {
@@ -17,6 +18,10 @@ class Routes extends React.Component {
           <div className="App">
             <Route path="/login" component={login} exact />
 
+            <Route path="/profile" exact>
+              <Profile db={this.props.db} />
+            </Route>
+            
             <Route path="/" exact>
               <Home db={this.props.db} />
             </Route>

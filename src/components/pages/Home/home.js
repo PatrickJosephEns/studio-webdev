@@ -2,10 +2,10 @@ import './home.css'
 import React from 'react'
 
 import Display_model from './display_model';
-import CreateStore from '../../store/create';
+import CreateStore from '../../user/create';
 import { ReactThreeFiber } from '@react-three/fiber';
 import ReadStores from '../../store/read';
-import ReadUserStores from '../../store/user/user_read';
+// import ReadUserStores from '../../store/user/user_read';
 
 import { FirebaseAuthConsumer, IfFirebaseAuthed } from "@react-firebase/auth";
 
@@ -32,19 +32,8 @@ class Home extends React.Component {
   temporary_content() {
     return <IfFirebaseAuthed>
       <Row>
-        <h2>This is a temporary means of showing the components</h2>
-      </Row>
-      <Row>
-        <CreateStore db={this.props.db} />
-        <Note>Component for User profile page</Note>
-      </Row>
-      <Row>
         <ReadStores />
         <Note>Component for /stores</Note>
-      </Row>
-      <Row>
-        <ReadUserStores db={this.props.db} />
-        <Note>Component for User profile page, so they can manage any of their own stores (Big component)</Note>
       </Row>
     </IfFirebaseAuthed>
   }
