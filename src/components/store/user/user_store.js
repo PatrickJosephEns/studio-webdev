@@ -29,7 +29,7 @@ class DisplayUserStore extends React.Component {
 
             <AccordionDetails>
                 <DeleteButton data={this.props.data} db={this.props.db}/>
-                <EditButton store_name={this.props.data.store_name} />
+                <EditButton store_name={this.props.data.store_name} id={this.props.data.id} db={this.props.db} />
 
                 <ul>
                     <li class="storeItem">

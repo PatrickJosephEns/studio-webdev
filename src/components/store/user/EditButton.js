@@ -10,33 +10,43 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Typography from '@material-ui/core/Typography';
 import Popover from '@material-ui/core/Popover';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import StoreForm from './StoreForm';
 
 function EditButton(props) {
-    const [popOpen, setPopOpen] = useState(false)
+    const [open, setOpen] = useState(false)
 
     const handleClose = () => {
-        setPopOpen(null);
+        setOpen(null);
     };
 
-    return <><Button onClick={() => { setPopOpen(!popOpen) }} color="primary" size="small" variant="contained">
+    return <><Button onClick={() => { setOpen(!open) }} color="primary" size="small" variant="contained">
         Edit
     </Button>
 
-        <Popover
-            anchorOrigin={{
-                vertical: 'center',
-                horizontal: 'center',
-            }}
-            transformOrigin={{
-                vertical: 'center',
-                horizontal: 'center',
-            }}
-            open={popOpen}
-            onClose={handleClose}>
-            <div class="popout">
-                <Typography size="large">Editing {props.store_name}</Typography>
-            </div>
-        </Popover>
+        <Dialog
+            open={open}
+            onClose={handleClose}
+        >
+            <DialogTitle>
+                Editing {props.store_name}
+            </DialogTitle>
+
+            <DialogContent>
+                <StoreForm db={props.db} id={props.id}/>
+            </DialogContent>
+
+            <DialogActions>
+                <Button autoFocus onClick={handleClose} color="primary">
+                    Exit
+                </Button>
+                
+            </DialogActions>
+        </Dialog>
     </>
 }
 
