@@ -1,12 +1,19 @@
 import React from 'react';
 import { FirestoreCollection } from 'react-firestore';
 
-class ReadStores extends React.Component {
+import firebase from "@firebase/app"
+import './user_store.css'
 
-    displayStores() {
+// Material UI
+import Button from '@material-ui/core/Button';
+import DisplayUserStore from './user_store';
+
+
+class ReadUserStores extends React.Component {
+    displayUserStores() {
         return (<FirestoreCollection
             path="stores"
-            sort={"store_name:asc"}
+            filter={['owner_id', '==', firebase.auth().currentUser.uid]}
             render={({ isLoading, data }) => {
                 if (isLoading) {
                     return (<div>
@@ -14,15 +21,11 @@ class ReadStores extends React.Component {
                     </div>);
                 } else {
                     return (<div>
-                        <h1>All the stores</h1>
+                        <h1>{firebase.auth().currentUser.displayName}'s stores</h1>
                         <div>
-                            <ul>
-                                {data.map(store => (
-                                    <h5>
-                                        {store.store_name}
-                                    </h5>
+                                {data.map(data => (
+                                    <DisplayUserStore db={this.props.db} data={data}/>
                                 ))}
-                            </ul>
                         </div>
                     </div>);
                 }
@@ -32,9 +35,9 @@ class ReadStores extends React.Component {
 
     render() {
         return (<div>
-            { this.displayStores()}
+            { this.displayUserStores()}
         </div>)
     }
 }
 
-export default ReadStores
+export default ReadUserStores
