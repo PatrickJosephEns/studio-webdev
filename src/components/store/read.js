@@ -9,13 +9,13 @@ class ReadStores extends React.Component {
             sort={"store_name:asc"}
             render={({ isLoading, data }) => {
                 if (isLoading) {
-                    return (<div class="card list mx-auto">
+                    return (<div>
                         <h2>Loading Store...</h2>
                     </div>);
                 } else {
-                    return (<div class="card list mx-auto">
+                    return (<div>
                         <h1>All the stores</h1>
-                        <div class="card-body">
+                        <div>
                             <ul>
                                 {data.map(store => (
                                     <h2>

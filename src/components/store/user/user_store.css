@@ -1,0 +1,13 @@
+.storeItem {
+    display: flex;
+}
+
+.deleteIcon {
+    size: 5em;
+}
+
+.store {
+    background-color: rgba(0,0,0,.1);
+    padding: 2em;
+    margin: 1em;
+}

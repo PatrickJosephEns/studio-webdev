@@ -30,13 +30,11 @@ const App = () => {
       <React.Fragment>
         <Navbar />
         {/* Need to pass DB through to routes so that it can be passed to any component */}
-        {/* <IfFirebaseAuthed> */}
-          <FirestoreProvider firebase={firebase}>
-            <Routes db={db} />
-          </FirestoreProvider>
-        {/* </IfFirebaseAuthed> */}
+        <FirestoreProvider firebase={firebase}>
+          <Routes db={db} />
+        </FirestoreProvider>
 
-        <Footer />
+        {/* <Footer /> */}
       </React.Fragment>
     </FirebaseAuthProvider>
   )
