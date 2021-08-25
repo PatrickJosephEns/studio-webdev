@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from "@firebase/app"
+import Button from '@material-ui/core/Button';
 
 class CreateStore extends React.Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class CreateStore extends React.Component {
         return <form onSubmit={(this.handleSubmit)} class="new-store">
             <h3>Make a new store!</h3>
             <input id="todo_input" type="text" value={this.state.store_name} onChange={(this.handleChange)}></input>
-            <button type="submit" class="btn btn-primary">Create Store</button>
+            <Button type="submit" color="primary" size="small" variant="contained">Create Store</Button>
         </form>
     }
 }
