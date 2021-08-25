@@ -18,9 +18,9 @@ class ReadStores extends React.Component {
                         <div>
                             <ul>
                                 {data.map(store => (
-                                    <h2>
+                                    <h5>
                                         {store.store_name}
-                                    </h2>
+                                    </h5>
                                 ))}
                             </ul>
                         </div>

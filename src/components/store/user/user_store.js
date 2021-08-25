@@ -6,6 +6,14 @@ import './user_store.css'
 
 // Material UI
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import EditButton from './EditButton';
+import DeleteButton from './DeleteButton';
 
 class DisplayUserStore extends React.Component {
     constructor(props) {
@@ -13,21 +21,29 @@ class DisplayUserStore extends React.Component {
     }
 
     displayStore() {
-        return <div class="store">
-            <h3>{this.props.data.store_name}</h3>
-            <Button onClick={() => { this.props.db.collection("stores").doc(this.props.data.id).delete() }}
-                size="small"
-                variant="contained"
-                color="secondary">
-                Delete
-            </Button>
 
-            <ul>
-                <li class="storeItem">
-                    Example Item
-                </li>
-            </ul>
-        </div>
+        return <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>{this.props.data.store_name}</Typography>
+            </AccordionSummary>
+
+            <AccordionDetails>
+                <DeleteButton data={this.props.data} db={this.props.db}/>
+                <EditButton store_name={this.props.data.store_name} />
+
+                <ul>
+                    <li class="storeItem">
+                        Category 1
+                    </li>
+                    <li class="storeItem">
+                        Category 2
+                    </li>
+                    <li class="storeItem">
+                        Category 3
+                    </li>
+                </ul>
+            </AccordionDetails>
+        </Accordion>
     }
 
     render() {
