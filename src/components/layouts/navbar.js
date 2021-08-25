@@ -1,48 +1,50 @@
 import firebase from "@firebase/app"
 
 import { FirebaseAuthConsumer, IfFirebaseAuthed } from "@react-firebase/auth";
+
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
+
 
 function NavBar() {
+
+  const useStyles = makeStyles((theme) => ({
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+  }));
+
+  const classes = useStyles();
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="http://localhost:3000/">The Mall</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <AppBar position="static" style={{ background: '#8C8C8C', flexGrow: 1 }} >
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" href="/">
+            <HomeIcon />
+          </IconButton>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Another Link <span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Other Links
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Data</a>
-              <a class="dropdown-item" href="#">About</a>
-            </div>
+          <Typography variant="h6" className={classes.title} ahref="/">
+            The Mall
+          </Typography>
 
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
           <FirebaseAuthConsumer>
 
             {({ isSignedIn }) => {
               if (!isSignedIn) {
                 return <Button href="/login" variant="contained" color="primary">Login</Button>
               }
-              return <Button onClick={() => {firebase.auth().signOut()}} variant="contained" color="secondary">Log Out</Button>
+              return <Button onClick={() => { firebase.auth().signOut() }} variant="contained" color="secondary">Log Out</Button>
             }}
           </FirebaseAuthConsumer>
-        </form>
-      </div>
-    </nav>
+        </Toolbar>
+      </AppBar>
   );
 }
 
