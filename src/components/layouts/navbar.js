@@ -37,7 +37,8 @@ function NavBar() {
         <Typography variant="h6" className={classes.title} ahref="/">
           The Mall
         </Typography>
-
+        
+       {/* loads login-popout */}
        <LoginButton />
 
         <IconButton href="/profile">
