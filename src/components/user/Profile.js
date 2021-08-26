@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import ReadUserStores from './user_read';
 import CreateStore from './create';
 import { Typography } from '@material-ui/core';
+import ProfileEdit from './ProfileEdit';
 
 class Profile extends React.Component {
     render() {
@@ -19,6 +20,7 @@ class Profile extends React.Component {
                     return <Typography>Log in to view your profile</Typography>
                 }
                 return <>
+                    <ProfileEdit db={this.props.db}/>
                     <CreateStore db={this.props.db} />
                     <ReadUserStores db={this.props.db} />
                 </>
