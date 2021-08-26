@@ -12,6 +12,7 @@ import HomeIcon from '@material-ui/icons/Home';
 
 import Avatar from "@material-ui/core/Avatar";
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import LoginButton from "./login-popout";
 
 
 function NavBar() {
@@ -36,15 +37,9 @@ function NavBar() {
         <Typography variant="h6" className={classes.title} ahref="/">
           The Mall
         </Typography>
-
-        <FirebaseAuthConsumer>
-          {({ isSignedIn }) => {
-            if (!isSignedIn) {
-              return <Button href="/login" variant="contained" color="primary">Login</Button>
-            }
-            return <Button onClick={() => { firebase.auth().signOut() }} variant="contained" color="secondary">Log Out</Button>
-          }}
-        </FirebaseAuthConsumer>
+        
+       {/* loads login-popout */}
+       <LoginButton />
 
         <IconButton href="/profile">
           <AccountCircle />
