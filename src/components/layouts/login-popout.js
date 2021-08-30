@@ -51,6 +51,7 @@ function LoginButton(props) {
                     <List component="nav" aria-label="contacts">
                         <ListItem button onClick={() => {
                             const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+                            handleClose();
                             firebase.auth().signInWithPopup(googleAuthProvider);
                         }}>
                             <ListItemIcon>
@@ -61,6 +62,7 @@ function LoginButton(props) {
 
                         <ListItem button onClick={() => {
                             const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+                            handleClose();
                             firebase.auth().signInWithPopup(facebookAuthProvider);
                         }}>
                             <ListItemIcon>
@@ -71,6 +73,7 @@ function LoginButton(props) {
 
                         <ListItem button onClick={() => {
                             const twitterAuthProvider = new firebase.auth.TwitterAuthProvider();
+                            handleClose();
                             firebase.auth().signInWithPopup(twitterAuthProvider);
                         }}>
                             <ListItemIcon>
@@ -81,6 +84,7 @@ function LoginButton(props) {
 
                         <ListItem button onClick={() => {
                             const githubAuthProvider = new firebase.auth.GithubAuthProvider();
+                            handleClose();
                             firebase.auth().signInWithPopup(githubAuthProvider);
                         }}>
                             <ListItemIcon>
