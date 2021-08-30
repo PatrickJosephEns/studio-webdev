@@ -37,7 +37,7 @@ function DeleteButton(props) {
                 onClose={handleClose}
             >
                 <DialogTitle>
-                    Delete Store
+                    Delete {props.data.store_name}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -61,10 +61,3 @@ function DeleteButton(props) {
 }
 
 export default DeleteButton
-
-
-
-// return <Button onClick={() => { this.props.db.collection("stores").doc(this.props.data.id).delete() }}
-//         color="secondary" size="small" variant="contained">
-//         Delete
-//     </Button>

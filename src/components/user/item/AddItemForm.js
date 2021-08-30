@@ -4,7 +4,7 @@ import { FirestoreCollection } from 'react-firestore';
 import Button from '@material-ui/core/Button';
 
 
-class CreateItem extends React.Component {
+class AddItemForm extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -36,10 +36,10 @@ class CreateItem extends React.Component {
 
     render() {
         return <form onSubmit={(this.handleSubmit)}>
-            <input type="text" value={this.state.item} onChange={(this.handleChange)}></input>
+            <input type="text" value={this.state.item} placeholder="Item Name" onChange={(this.handleChange)}></input>
             <Button color="primary" size="small" variant="contained" type="submit">Add</Button>
         </form>
     }
 }
 
-export default CreateItem
+export default AddItemForm
