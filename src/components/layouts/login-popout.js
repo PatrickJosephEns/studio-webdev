@@ -51,7 +51,9 @@ function LoginButton(props) {
                     <List component="nav" aria-label="contacts">
                         <ListItem button onClick={() => {
                             const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+                            // handleClose()
                             firebase.auth().signInWithPopup(googleAuthProvider);
+                            // handleClose()
                         }}>
                             <ListItemIcon>
                                 <StarIcon />
@@ -62,6 +64,8 @@ function LoginButton(props) {
                         <ListItem button onClick={() => {
                             const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
                             firebase.auth().signInWithPopup(facebookAuthProvider);
+
+                            
                         }}>
                             <ListItemIcon>
                                 <FacebookIcon />

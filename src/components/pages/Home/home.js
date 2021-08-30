@@ -2,7 +2,6 @@ import './home.css'
 import React from 'react'
 
 import Display_model from './display_model';
-import CreateStore from '../../user/create';
 import { ReactThreeFiber } from '@react-three/fiber';
 import ReadStores from '../../store/read';
 // import ReadUserStores from '../../store/user/user_read';

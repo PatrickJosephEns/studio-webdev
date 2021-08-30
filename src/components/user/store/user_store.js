@@ -14,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
+import CreateItem from '../item/CreateItem';
+import ReadStoreItems from '../item/ReadItems';
 
 class DisplayUserStore extends React.Component {
     constructor(props) {
@@ -30,18 +32,9 @@ class DisplayUserStore extends React.Component {
             <AccordionDetails>
                 <DeleteButton data={this.props.data} db={this.props.db}/>
                 <EditButton store_name={this.props.data.store_name} id={this.props.data.id} db={this.props.db} />
-
-                <ul>
-                    <li class="storeItem">
-                        Category 1
-                    </li>
-                    <li class="storeItem">
-                        Category 2
-                    </li>
-                    <li class="storeItem">
-                        Category 3
-                    </li>
-                </ul>
+                
+                <CreateItem db={this.props.db} store_id={this.props.data.id} />
+                <ReadStoreItems store_id={this.props.data.id}/>
             </AccordionDetails>
         </Accordion>
     }
