@@ -3,13 +3,9 @@ import React from 'react';
 
 // Page Components Here
 import Home from './components/pages/Home/home';
-import Profile from './components/user/Profile';
+import Profile from './components/pages/Profile/Profile';
 
 class Routes extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <BrowserRouter>

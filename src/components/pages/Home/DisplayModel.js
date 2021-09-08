@@ -1,0 +1,50 @@
+import React, { Suspense, useRef } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Stage } from "@react-three/drei";
+import IphoneModel from "./models/iphoneModel";
+
+
+
+//  import { useGLTF } from "@react-three/drei";
+// function HeadphoneModel(props) {
+//     const { scene } = useGLTF('https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/models/headphones/model.gltf')
+//     return <primitive object={scene} {...props} />
+// }
+
+// function KnifeBlockModel(props) {
+//     const { scene } = useGLTF('https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/models/knife-block/model.gltf')
+//     return <primitive object={scene} {...props} />
+// }
+
+// function PlantModel(props) {
+//     const { scene } = useGLTF('https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/models/plant/model.gltf')
+//     return <primitive object={scene} {...props} />
+// }
+
+// function KeyBoardModel(props) {
+//     const { scene } = useGLTF('https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/models/mechanical-keyboard/model.gltf')
+//     return <primitive object={scene} {...props} />
+// }
+
+function Display_model() {
+    const ref = useRef();
+
+    return <div id="homeModel">
+        <Canvas shadows dpr={[1, 2]} camera={{ fov: 50, position: [5, 8, 5] }}>
+            {/* <Stars /> */}
+            <Suspense fallback={null}>
+                <Stage
+                    controls={ref}
+                    preset="rembrandt"
+                    intensity={1}
+                    environment="city"
+                >
+                    <IphoneModel />
+                </Stage>
+            </Suspense>
+            <OrbitControls ref={ref} autoRotate enableZoom={false} enablePan={false} enableRotate={false} />
+        </Canvas>
+    </div>
+}
+
+export default Display_model

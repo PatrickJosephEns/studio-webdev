@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
-import { FirestoreCollection } from 'react-firestore';
-
-import firebase from "@firebase/app"
-import './user_store.css'
 
 // Material UI
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Typography from '@material-ui/core/Typography';
-import Popover from '@material-ui/core/Popover';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import StoreForm from './StoreForm';
+import AddItemForm from './CreateItemForm';
 
-function EditButton(props) {
+function AddButton(props) {
     const [open, setOpen] = useState(false)
 
     const handleClose = () => {
@@ -25,7 +17,7 @@ function EditButton(props) {
     };
 
     return <><Button onClick={() => { setOpen(!open) }} color="primary" size="small" variant="contained">
-        Edit
+        Add
     </Button>
 
         <Dialog
@@ -33,11 +25,11 @@ function EditButton(props) {
             onClose={handleClose}
         >
             <DialogTitle>
-                Editing {props.store_name}
+                Adding to {props.store_name}
             </DialogTitle>
 
             <DialogContent>
-                <StoreForm db={props.db} id={props.id}/>
+                <AddItemForm store_id={props.store_id} db={props.db}/>
             </DialogContent>
 
             <DialogActions>
@@ -50,4 +42,4 @@ function EditButton(props) {
     </>
 }
 
-export default EditButton
+export default AddButton

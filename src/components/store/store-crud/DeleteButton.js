@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import { FirestoreCollection } from 'react-firestore';
-
-import firebase from "@firebase/app"
-import './user_store.css'
+import React from 'react';
 
 // Material UI
 import Button from '@material-ui/core/Button';
@@ -12,8 +8,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import Paper from '@material-ui/core/Paper';
-import Draggable from 'react-draggable';
 
 
 function DeleteButton(props) {
@@ -37,7 +31,7 @@ function DeleteButton(props) {
                 onClose={handleClose}
             >
                 <DialogTitle>
-                    Delete Store
+                    Delete {props.data.store_name}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -61,10 +55,3 @@ function DeleteButton(props) {
 }
 
 export default DeleteButton
-
-
-
-// return <Button onClick={() => { this.props.db.collection("stores").doc(this.props.data.id).delete() }}
-//         color="secondary" size="small" variant="contained">
-//         Delete
-//     </Button>
