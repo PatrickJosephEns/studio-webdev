@@ -1,8 +1,4 @@
 import React from 'react';
-import { FirestoreCollection } from 'react-firestore';
-
-import firebase from "@firebase/app"
-import './user_store.css'
 
 import Button from '@material-ui/core/Button';
 

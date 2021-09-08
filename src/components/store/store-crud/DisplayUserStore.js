@@ -1,12 +1,6 @@
 import React from 'react';
-import { FirestoreCollection } from 'react-firestore';
-
-import firebase from "@firebase/app"
-import './user_store.css'
 
 // Material UI
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -14,15 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
-import AddItemForm from '../item/AddItemForm';
-import ReadStoreItems from '../item/ReadItems';
-import AddButton from './AddButton';
+import ReadStoreItems from '../item-crud/ReadItems';
+import AddButton from '../item-crud/CreateButton';
 
 class DisplayUserStore extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
     displayStore() {
 
         return <Accordion>
@@ -31,11 +20,10 @@ class DisplayUserStore extends React.Component {
             </AccordionSummary>
 
             <AccordionDetails>
+                {/* Make an owner panel, and if the user is the owner, let them access these */}
                 <DeleteButton data={this.props.data} db={this.props.db}/>
                 <EditButton store_name={this.props.data.store_name} id={this.props.data.id} db={this.props.db} />
                 <AddButton store_id={this.props.data.id} store_name={this.props.data.store_name} db={this.props.db}/>
-
-                {/* <AddItemForm db={this.props.db} store_id={this.props.data.id} /> */}
 
                 <ReadStoreItems store_id={this.props.data.id}/>
             </AccordionDetails>

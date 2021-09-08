@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import { FirestoreCollection } from 'react-firestore';
-
-import firebase from "@firebase/app"
-import './user_store.css'
+import React from 'react';
 
 // Material UI
 import Button from '@material-ui/core/Button';
@@ -12,8 +8,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import Paper from '@material-ui/core/Paper';
-import Draggable from 'react-draggable';
 
 
 function DeleteButton(props) {

@@ -2,11 +2,10 @@ import React from 'react';
 import { FirestoreCollection } from 'react-firestore';
 
 import firebase from "@firebase/app"
-import './user_store.css'
+// import './user_store.css'
 
 // Material UI
-import Button from '@material-ui/core/Button';
-import DisplayUserStore from './user_store';
+import DisplayUserStore from './DisplayUserStore';
 
 
 class ReadUserStores extends React.Component {

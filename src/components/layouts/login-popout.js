@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FirebaseAuthConsumer, IfFirebaseAuthed } from "@react-firebase/auth";
+import React from 'react';
+import { FirebaseAuthConsumer } from "@react-firebase/auth";
 import firebase from "@firebase/app"
 
 // Material UI
@@ -8,7 +8,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';

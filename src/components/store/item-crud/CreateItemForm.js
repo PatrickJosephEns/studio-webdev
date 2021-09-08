@@ -1,5 +1,4 @@
 import React from 'react';
-import { FirestoreCollection } from 'react-firestore';
 
 import Button from '@material-ui/core/Button';
 

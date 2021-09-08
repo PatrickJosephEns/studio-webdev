@@ -1,14 +1,9 @@
 import React from 'react';
-import { FirestoreCollection } from 'react-firestore';
 
-import firebase from "@firebase/app"
-// import './user_store.css'
+import { FirebaseAuthConsumer } from "@react-firebase/auth";
 
-import { FirebaseAuthConsumer, IfFirebaseAuthed } from "@react-firebase/auth";
-
-import Button from '@material-ui/core/Button';
-import ReadUserStores from './store/user_read';
-import CreateStore from './store/create';
+import ReadUserStores from '../../store/store-crud/ReadCurrentUserStores';
+import CreateStore from '../../store/store-crud/CreateStoreForm';
 import { Typography } from '@material-ui/core';
 
 class Profile extends React.Component {
