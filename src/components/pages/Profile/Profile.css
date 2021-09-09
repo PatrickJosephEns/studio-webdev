@@ -1,0 +1,11 @@
+.avatarImg {
+    border-style: solid;
+    min-width: 300px;
+    min-height: 300px;
+    left: 37.8%;
+}
+
+.profile {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}

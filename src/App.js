@@ -15,10 +15,20 @@ import db, { firebaseConfig } from './firebase-config'
 // Setting method for when a new user joins the system
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    db.collection("users").doc(user.uid).set({
-      name: user.displayName,
-      email: user.email,
-      id: user.uid,
+    db.collection("users").doc(firebase.auth().currentUser.uid).get().then((doc) => {
+      if (doc.exists) {
+
+      }
+      else {
+        db.collection("users").doc(user.uid).set({
+          name: user.displayName,
+          email: user.email,
+          id: user.uid,
+          bio: "",
+          status: "",
+          location: ""
+        })
+      }
     })
   }
 });
@@ -27,9 +37,9 @@ const App = () => {
   return (
     <FirebaseAuthProvider {...firebaseConfig} firebase={firebase}>
       <React.Fragment>
-        <Navbar />
-        {/* Need to pass DB through to routes so that it can be passed to any component */}
         <FirestoreProvider firebase={firebase}>
+          <Navbar />
+          {/* Need to pass DB through to routes so that it can be passed to any component */}
           <Routes db={db} />
         </FirestoreProvider>
 
