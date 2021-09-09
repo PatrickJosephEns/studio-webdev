@@ -12,6 +12,7 @@
 ## Available Scripts
 
 ### `npm start`
+### `npm install`
 
 ## Deployment
 ### `npm run build`
