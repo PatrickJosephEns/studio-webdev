@@ -44,6 +44,11 @@ function DeleteButton(props) {
                     </Button>
                     <Button onClick={() => {
                         props.db.collection("stores").doc(props.data.id).delete();
+
+                        
+
+
+
                         handleClose();
                     }} color="secondary" variant="contained">
                         Delete
