@@ -16,7 +16,7 @@ class ReadStoreItems extends React.Component {
                     return (<div className='cards__container'>
                     <div className='cards__wrapper'>
                         {data.map(data => (
-                            <CardItem text={data.text} desciption={data.description}  />
+                            <CardItem text={data.text} desciption={data.desc} category ={data.category}  />
                       ))}
                        </div> 
                        </div>
