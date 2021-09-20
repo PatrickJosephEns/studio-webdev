@@ -1,12 +1,20 @@
 .avatarImg {
     border: 3px solid rgba(0,0,0,0.3);
     box-shadow: 0px 10px 20px black;
-    min-width: 300px;
-    min-height: 300px;
-    left: 37.8%;
+    min-width: 230px;
+    min-height: 230px;
+    justify-content: center;
 }
 
 .profile {
     margin-top: 70px;
     margin-bottom: 70px;
+}
+
+.profile-items {
+    border: black;
+    border-style: solid;
+    padding: 3%;
+    width: 40%;
+    left: 100%;
 }
