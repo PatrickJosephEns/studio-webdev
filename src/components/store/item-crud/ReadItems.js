@@ -13,13 +13,11 @@ class ReadStoreItems extends React.Component {
                         <h2>Loading Items...</h2>
                     </div>);
                 } else {
-                    return (<div className='cards__container'>
-                    <div className='cards__wrapper'>
+                    return (<div className='row'>
                         {data.map(data => (
-                            <CardItem text={data.text} desciption={data.desc} category ={data.category}  />
+                            <CardItem text={data.text}/>
                       ))}
                        </div> 
-                       </div>
                     );
                 }
             }}
