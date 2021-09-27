@@ -21,7 +21,7 @@ class Profile extends React.Component {
                             <div class="profile-items">
                                 <h1>{firebase.auth().currentUser.displayName}'s Profile</h1>
                                 <Avatar className="avatarImg" src={firebase.auth().currentUser.photoURL}></Avatar>
-                                <UserInformation db={this.props.db}/>
+                                <UserInformation db={this.props.db} storage={this.props.storage}/>
                             </div>
                             <CreateStore db={this.props.db} />
                             <ReadUserStores db={this.props.db} />
