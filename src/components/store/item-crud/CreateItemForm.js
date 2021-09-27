@@ -68,10 +68,18 @@ class AddItemForm extends React.Component {
             onChange={this.handleChange}
             input={<Input id="demo-dialog-native" />}
           >
+            {/* All item categories here! */}
             <option aria-label="None" value="" />
-            <option value={"Tech"}>Tech</option>
-            <option value={"Clothes"}>Clothes</option>
-            <option value={"Food"}>Food</option>
+            <option value={"Tech"}>Clothing & Jewellery</option>
+            <option value={"Clothes"}>Home & Garden</option>
+            <option value={"Food"}>Sports & Outdoors</option>
+            <option value={"Food"}>Electronics & Gaming</option>
+            <option value={"Food"}>Toys & Baby</option>
+            <option value={"Food"}>Books, Music & Movies</option>
+            <option value={"Food"}>Health & Beauty</option>
+            <option value={"Food"}>Food, Pets & Household</option>
+            <option value={"Food"}>Craft, Party & Stationery</option>
+            <option value={"Food"}>Gifting</option>
           </Select>
         </FormControl>
 
