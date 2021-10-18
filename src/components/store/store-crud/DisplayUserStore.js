@@ -17,14 +17,15 @@ class DisplayUserStore extends React.Component {
         return <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>{this.props.data.store_name}</Typography>
-            </AccordionSummary>
-
-            <AccordionDetails>
-                {/* Make an owner panel, and if the user is the owner, let them access these */}
                 <DeleteButton data={this.props.data} db={this.props.db}/>
                 <EditButton store_name={this.props.data.store_name} id={this.props.data.id} db={this.props.db} />
                 <AddButton store_id={this.props.data.id} store_name={this.props.data.store_name} db={this.props.db}/>
 
+            </AccordionSummary>
+
+            <AccordionDetails>
+                {/* Make an owner panel, and if the user is the owner, let them access these */}
+               
                 <ReadStoreItems store_id={this.props.data.id}/>
             </AccordionDetails>
         </Accordion>
