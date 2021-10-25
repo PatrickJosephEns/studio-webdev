@@ -16,9 +16,11 @@ class ReadStores extends React.Component {
                     </div>);
                 } else {
                     return (<>
-                            {data.map(data => (
+                        {data.map(data => (
+                            <div style={{marginTop: '15px'}}>
                                 <DisplayStore db={this.props.db} data={data} />
-                            ))}
+                            </div>
+                        ))}
                     </>);
                 }
             }}

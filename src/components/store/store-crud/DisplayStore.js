@@ -11,16 +11,19 @@ import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
 import ReadStoreItems from '../item-crud/ReadItems';
 import AddButton from '../item-crud/CreateButton';
+import Tooltip from '@mui/material/Tooltip';
 
-import { makeStyles } from "@material-ui/core/styles";
 
 class DisplayStore extends React.Component {
     displayStore() {
 
-        return <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>{this.props.data.store_name}</Typography>
-            </AccordionSummary>
+        return <Accordion defaultExpanded={true} sx={{ gap: 2 }}>
+            <Tooltip title="Click to toggle this shop" placement="bottom">
+                <AccordionSummary> 
+                    {/*                 Store name            If the owner of the shop is the user, tell them its there store, otherwise nothing */}
+                    <Typography>{this.props.data.store_name} {this.props.data.owner_id == firebase.auth().currentUser.uid ? "(Your Store)" : null}</Typography>
+                </AccordionSummary>
+            </Tooltip>
 
             <AccordionDetails>
                 {this.owner_panel()}
