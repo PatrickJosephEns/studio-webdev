@@ -5,7 +5,7 @@ import firebase from "@firebase/app"
 // import './user_store.css'
 
 // Material UI
-import DisplayUserStore from './DisplayUserStore';
+import DisplayStore from './DisplayStore';
 
 
 class ReadUserStores extends React.Component {
@@ -23,7 +23,7 @@ class ReadUserStores extends React.Component {
                         <h1>{firebase.auth().currentUser.displayName}'s stores</h1>
                         <div>
                                 {data.map(data => (
-                                    <DisplayUserStore db={this.props.db} data={data}/>
+                                    <DisplayStore db={this.props.db} data={data}/>
                                 ))}
                         </div>
                     </div>);

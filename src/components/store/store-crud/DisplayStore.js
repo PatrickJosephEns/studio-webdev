@@ -12,7 +12,7 @@ import DeleteButton from './DeleteButton';
 import ReadStoreItems from '../item-crud/ReadItems';
 import AddButton from '../item-crud/CreateButton';
 
-class DisplayUserStore extends React.Component {
+class DisplayStore extends React.Component {
     displayStore() {
 
         return <Accordion>
@@ -36,7 +36,6 @@ class DisplayUserStore extends React.Component {
                 <DeleteButton data={this.props.data} db={this.props.db} />
                 <EditButton store_name={this.props.data.store_name} id={this.props.data.id} db={this.props.db} />
                 <AddButton store_id={this.props.data.id} store_name={this.props.data.store_name} db={this.props.db} />
-
             </>
         }
     }
@@ -48,4 +47,4 @@ class DisplayUserStore extends React.Component {
     }
 }
 
-export default DisplayUserStore
+export default DisplayStore

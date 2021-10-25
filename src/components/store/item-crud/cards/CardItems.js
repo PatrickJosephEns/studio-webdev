@@ -53,7 +53,8 @@ function CardItem(props) {
       </DialogTitle>
 
       <DialogContent>
-
+        <h1>3d model and images will go here</h1>
+        {props.data.desc}
       </DialogContent>
 
       <DialogActions>
