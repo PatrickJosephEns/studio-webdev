@@ -12,6 +12,8 @@ import DeleteButton from './DeleteButton';
 import ReadStoreItems from '../item-crud/ReadItems';
 import AddButton from '../item-crud/CreateButton';
 
+import { makeStyles } from "@material-ui/core/styles";
+
 class DisplayStore extends React.Component {
     displayStore() {
 

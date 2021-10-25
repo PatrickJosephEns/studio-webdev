@@ -1,6 +1,8 @@
 import React from 'react';
 import { FirestoreCollection } from 'react-firestore';
 
+import DisplayStore from './DisplayStore';
+
 class ReadStores extends React.Component {
 
     displayStores() {
@@ -13,18 +15,11 @@ class ReadStores extends React.Component {
                         <h2>Loading Store...</h2>
                     </div>);
                 } else {
-                    return (<div>
-                        <h1>All the stores</h1>
-                        <div>
-                            <ul>
-                                {data.map(store => (
-                                    <h5>
-                                        {store.store_name}
-                                    </h5>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>);
+                    return (<>
+                            {data.map(data => (
+                                <DisplayStore db={this.props.db} data={data} />
+                            ))}
+                    </>);
                 }
             }}
         />)
@@ -32,7 +27,7 @@ class ReadStores extends React.Component {
 
     render() {
         return (<div>
-            { this.displayStores()}
+            {this.displayStores()}
         </div>)
     }
 }
