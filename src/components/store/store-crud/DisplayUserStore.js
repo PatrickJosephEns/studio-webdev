@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from "@firebase/app";
 
 // Material UI
 import Accordion from '@material-ui/core/Accordion';
@@ -17,18 +18,27 @@ class DisplayUserStore extends React.Component {
         return <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>{this.props.data.store_name}</Typography>
-                <DeleteButton data={this.props.data} db={this.props.db}/>
-                <EditButton store_name={this.props.data.store_name} id={this.props.data.id} db={this.props.db} />
-                <AddButton store_id={this.props.data.id} store_name={this.props.data.store_name} db={this.props.db}/>
-
             </AccordionSummary>
 
             <AccordionDetails>
-                {/* Make an owner panel, and if the user is the owner, let them access these */}
-               
-                <ReadStoreItems store_id={this.props.data.id}/>
+                {this.owner_panel()}
+            </AccordionDetails>
+
+            <AccordionDetails>
+                <ReadStoreItems store_id={this.props.data.id} />
             </AccordionDetails>
         </Accordion>
+    }
+
+    owner_panel() {
+        if (this.props.data.owner_id == firebase.auth().currentUser.uid) {
+            return <>
+                <DeleteButton data={this.props.data} db={this.props.db} />
+                <EditButton store_name={this.props.data.store_name} id={this.props.data.id} db={this.props.db} />
+                <AddButton store_id={this.props.data.id} store_name={this.props.data.store_name} db={this.props.db} />
+
+            </>
+        }
     }
 
     render() {
