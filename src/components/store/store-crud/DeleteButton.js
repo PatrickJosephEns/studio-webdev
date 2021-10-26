@@ -43,6 +43,14 @@ function DeleteButton(props) {
                         Cancel
                     </Button>
                     <Button onClick={() => {
+                        // Access store entry
+                        props.db.collection("stores").doc(props.data.id).collection('items').get().then((querySnapshot) => {
+                            // Loop through the query which is all the items
+                            querySnapshot.forEach((doc) => {
+                                doc.ref.delete()
+                            })
+                        })
+                        // Finally delete the store
                         props.db.collection("stores").doc(props.data.id).delete();
                         handleClose();
                     }} color="secondary" variant="contained">
