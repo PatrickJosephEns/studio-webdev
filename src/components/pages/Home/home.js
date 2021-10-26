@@ -9,6 +9,7 @@ import { FirebaseAuthConsumer, IfFirebaseAuthed } from "@react-firebase/auth";
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Showcase from './models/Showcase';
 
 // Just wrap anything in this <Row>CONTENT HERE</Row>, and it will automatically create a styled div
 const Row = ({ children }) => <div className="row justify-content-center panel">{children}</div>
@@ -16,13 +17,16 @@ const Row = ({ children }) => <div className="row justify-content-center panel">
 const paperHeight = 220;
 const paperWidth = 250;
 const paperPadding = '15px'
+const middleDif = 50;
 
 class Home extends React.Component {
   render() {
     return (
       <>
         <div id="home">
-          <DisplayModel />
+          <div id="homeModel">
+            <DisplayModel />
+          </div>
           <div class="title">
             <p class="header">The Mall</p>
             <p class="paragraph">Experience the future of shopping</p>
@@ -32,7 +36,7 @@ class Home extends React.Component {
         <Grid item>
           <Grid container justifyContent="center" spacing={10}>
             <Grid item>
-              <Paper sx={{ height: paperHeight, width: paperWidth, padding: paperPadding }}>
+              <Paper elevation={5} sx={{ height: paperHeight, width: paperWidth, padding: paperPadding }}>
                 <Typography variant="subtitle1" component="div">
                   At The Mall, you can browse a variety of user created stores and view the items with images or 3d models (where supported)
                 </Typography>
@@ -40,13 +44,13 @@ class Home extends React.Component {
             </Grid>
 
             <Grid item>
-              <Paper sx={{ height: paperHeight, width: paperWidth, padding: paperPadding }}>
-
+              <Paper elevation={15} sx={{ height: paperHeight + middleDif, width: paperWidth + middleDif }}>
+                <DisplayModel model_no={1}/>
               </Paper>
             </Grid>
 
             <Grid item>
-              <Paper sx={{ height: paperHeight, width: paperWidth, padding: paperPadding }}>
+              <Paper elevation={5} sx={{ height: paperHeight, width: paperWidth, padding: paperPadding }}>
                 <Typography variant="subtitle1" component="div">
                   To make a store at The Mall, click on your <a href="/profile">Profile</a> and than scroll down to add a store. You can now add items to your new store
                 </Typography>

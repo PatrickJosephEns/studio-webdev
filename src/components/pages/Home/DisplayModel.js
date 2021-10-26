@@ -2,49 +2,38 @@ import React, { Suspense, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stage } from "@react-three/drei";
 import IphoneModel from "./models/iphoneModel";
+import KeyboardModel from "./models/KeyboardModel";
 
-
-
-//  import { useGLTF } from "@react-three/drei";
-// function HeadphoneModel(props) {
-//     const { scene } = useGLTF('https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/models/headphones/model.gltf')
-//     return <primitive object={scene} {...props} />
-// }
-
-// function KnifeBlockModel(props) {
-//     const { scene } = useGLTF('https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/models/knife-block/model.gltf')
-//     return <primitive object={scene} {...props} />
-// }
-
-// function PlantModel(props) {
-//     const { scene } = useGLTF('https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/models/plant/model.gltf')
-//     return <primitive object={scene} {...props} />
-// }
-
-// function KeyBoardModel(props) {
-//     const { scene } = useGLTF('https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/models/mechanical-keyboard/model.gltf')
-//     return <primitive object={scene} {...props} />
-// }
-
-function Display_model() {
+function Display_model(props) {
     const ref = useRef();
 
-    return <div id="homeModel">
-        <Canvas shadows dpr={[1, 2]} camera={{ fov: 50, position: [5, 8, 5] }}>
-            {/* <Stars /> */}
-            <Suspense fallback={null}>
-                <Stage
-                    controls={ref}
-                    preset="rembrandt"
-                    intensity={1}
-                    environment="city"
-                >
-                    <IphoneModel />
-                </Stage>
-            </Suspense>
-            <OrbitControls ref={ref} autoRotate enableZoom={false} enablePan={false} enableRotate={false} />
-        </Canvas>
-    </div>
+    return <Canvas shadows dpr={[1, 2]} camera={{ fov: 50, position: [5, 8, 5] }}>
+        <Suspense fallback={null}>
+            <Stage
+                controls={ref}
+                preset="rembrandt"
+                intensity={1}
+                environment="city"
+            >
+                {get_model(props.model_no)}
+            </Stage>
+        </Suspense>
+        <OrbitControls ref={ref} autoRotate enableZoom={false} enablePan={false} enableRotate={false} />
+    </Canvas>
+
+}
+
+function get_model(model_no) {
+    console.log(model_no)
+    switch (model_no) {
+        case 1:
+            return <KeyboardModel />
+            break;
+
+        default:
+            return <IphoneModel />
+            break;
+    }
 }
 
 export default Display_model
