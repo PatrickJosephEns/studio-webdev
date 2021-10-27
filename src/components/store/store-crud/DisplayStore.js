@@ -19,9 +19,9 @@ class DisplayStore extends React.Component {
 
         return <Accordion defaultExpanded={true} sx={{ gap: 2 }}>
             <Tooltip title="Click to toggle this shop" placement="bottom">
-                <AccordionSummary> 
-                    {/*                 Store name            If the owner of the shop is the user, tell them its there store, otherwise nothing */}
-                    <Typography>{this.props.data.store_name} {this.props.data.owner_id == firebase.auth().currentUser.uid ? "(Your Store)" : null}</Typography>
+                <AccordionSummary>
+                    {/*                 Store name             check the currentUser isnt null first, If the owner of the shop is the user, tell them its there store, otherwise nothing */}
+                    <Typography>{this.props.data.store_name} {firebase.auth().currentUser ? (this.props.data.owner_id == firebase.auth().currentUser.uid ? "(Your Store)" : null) : null}</Typography>
                 </AccordionSummary>
             </Tooltip>
 
@@ -36,12 +36,14 @@ class DisplayStore extends React.Component {
     }
 
     owner_panel() {
-        if (this.props.data.owner_id == firebase.auth().currentUser.uid) {
-            return <>
-                <DeleteButton data={this.props.data} db={this.props.db} />
-                <EditButton store_name={this.props.data.store_name} id={this.props.data.id} db={this.props.db} />
-                <AddButton store_id={this.props.data.id} store_name={this.props.data.store_name} db={this.props.db} />
-            </>
+        if (firebase.auth().currentUser) {
+            if (this.props.data.owner_id == firebase.auth().currentUser.uid) {
+                return <>
+                    <DeleteButton data={this.props.data} db={this.props.db} />
+                    <EditButton store_name={this.props.data.store_name} id={this.props.data.id} db={this.props.db} />
+                    <AddButton store_id={this.props.data.id} store_name={this.props.data.store_name} db={this.props.db} />
+                </>
+            }
         }
     }
 

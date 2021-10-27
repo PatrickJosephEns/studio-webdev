@@ -21,11 +21,9 @@ class ReadUserStores extends React.Component {
                 } else {
                     return (<div>
                         <h1>{firebase.auth().currentUser.displayName}'s stores</h1>
-                        <div>
-                                {data.map(data => (
-                                    <DisplayStore db={this.props.db} data={data}/>
-                                ))}
-                        </div>
+                        {data.map(data => (
+                            <DisplayStore db={this.props.db} data={data} />
+                        ))}
                     </div>);
                 }
             }}
@@ -34,7 +32,7 @@ class ReadUserStores extends React.Component {
 
     render() {
         return (<div>
-            { this.displayUserStores()}
+            {this.displayUserStores()}
         </div>)
     }
 }
