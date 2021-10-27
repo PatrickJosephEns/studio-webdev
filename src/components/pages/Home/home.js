@@ -14,6 +14,7 @@ import { ButtonBase } from '@mui/material';
 import Container from '@mui/material/Container';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@mui/material/Tooltip';
+
 // Dialog
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -37,51 +38,53 @@ function Home() {
 
   return (
     <>
-      <div id="home">
-        <Tooltip title="Click the phone!" placement="left">
-          <div id="homeModel">
-            <DisplayModel />
+      <Container>
+        <div id="home">
+          <Tooltip title="Click the phone!" placement="left">
+            <div id="homeModel">
+              <DisplayModel />
+            </div>
+          </Tooltip>
+          <div class="title">
+            <p class="header">The Mall</p>
+            <p class="paragraph">Experience the future of shopping</p>
           </div>
-        </Tooltip>
-        <div class="title">
-          <p class="header">The Mall</p>
-          <p class="paragraph">Experience the future of shopping</p>
         </div>
-      </div>
+        <Grid item>
+          <Grid container justifyContent="center" spacing={10}>
+            <Grid item>
+              <Paper elevation={5} sx={{ height: paperHeight, width: paperWidth, padding: paperPadding }}>
+                <Typography variant="subtitle1" component="div">
+                  At The Mall, you can browse a variety of user created stores and view the items with images or 3d models (where supported)
+                </Typography>
+              </Paper>
+            </Grid>
 
-      <Grid item>
-        <Grid container justifyContent="center" spacing={10}>
-          <Grid item>
-            <Paper elevation={5} sx={{ height: paperHeight, width: paperWidth, padding: paperPadding }}>
-              <Typography variant="subtitle1" component="div">
-                At The Mall, you can browse a variety of user created stores and view the items with images or 3d models (where supported)
-              </Typography>
-            </Paper>
-          </Grid>
+            <Grid item>
+              <Tooltip title="Popout" placement="bottom">
+                <ButtonBase onClick={event => { setOpen(!open) }}>
+                  <Paper elevation={15} sx={{ height: paperHeight + middleDif, width: paperWidth + middleDif }}>
+                    <DisplayModel model_no={1} />
+                  </Paper>
+                </ButtonBase>
+              </Tooltip>
+            </Grid>
 
-          <Grid item>
-            <Tooltip title="Popout" placement="bottom">
-              <ButtonBase onClick={event => { setOpen(!open) }}>
-                <Paper elevation={15} sx={{ height: paperHeight + middleDif, width: paperWidth + middleDif }}>
-                  <DisplayModel model_no={1} />
-                </Paper>
-              </ButtonBase>
-            </Tooltip>
-          </Grid>
-
-          <Grid item>
-            <Paper elevation={5} sx={{ height: paperHeight, width: paperWidth, padding: paperPadding }}>
-              <Typography variant="subtitle1" component="div">
-                To make a store at The Mall, click on your <a href="/profile">Profile</a> and than scroll down to add a store. You can now add items to your new store
-              </Typography>
-            </Paper>
+            <Grid item>
+              <Paper elevation={5} sx={{ height: paperHeight, width: paperWidth, padding: paperPadding }}>
+                <Typography variant="subtitle1" component="div">
+                  To make a store at The Mall, click on your <a href="/profile">Profile</a> and than scroll down to add a store. You can now add items to your new store
+                </Typography>
+              </Paper>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
 
-      <Row>
-        <ReadStores />
-      </Row>
+
+        <Row>
+          <ReadStores />
+        </Row>
+      </Container>
 
       {/* HIDDEN DIALOG */}
       <Dialog
