@@ -14,7 +14,7 @@ class ReadStoreItems extends React.Component {
                 } else {
                     return (<div className='row'>
                         {data.map(data => (
-                            <CardItem data={data} />
+                            <CardItem data={data} storage={this.props.storage} />
                       ))}
                        </div> 
                     );

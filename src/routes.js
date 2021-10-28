@@ -12,11 +12,11 @@ class Routes extends React.Component {
         <Switch>
           <div className="App">
             <Route path="/profile" exact>
-              <Profile db={this.props.db} />
+              <Profile db={this.props.db} storage={this.props.storage} />
             </Route>
             
             <Route path="/" exact>
-              <Home db={this.props.db} />
+              <Home db={this.props.db} storage={this.props.storage} />
             </Route>
           </div>
         </Switch>

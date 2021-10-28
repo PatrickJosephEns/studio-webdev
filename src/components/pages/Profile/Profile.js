@@ -18,13 +18,13 @@ class Profile extends React.Component {
                 }
                 return <>
                     <div class="profile">
-                        <Container>
-                            <h1>{firebase.auth().currentUser.displayName}'s Profile</h1>
-                            <Avatar className="avatarImg" src={firebase.auth().currentUser.photoURL}></Avatar>
-                            <UserInformation db={this.props.db}/>
+                            <div class="profile-items">
+                                <h1>{firebase.auth().currentUser.displayName}'s Profile</h1>
+                                <Avatar className="avatarImg" src={firebase.auth().currentUser.photoURL}></Avatar>
+                                <UserInformation db={this.props.db} storage={this.props.storage}/>
+                            </div>
                             <CreateStore db={this.props.db} />
-                            <ReadUserStores db={this.props.db} />
-                        </Container>
+                            <ReadUserStores db={this.props.db} storage={this.props.storage}/>
                     </div>
                 </>
             }}

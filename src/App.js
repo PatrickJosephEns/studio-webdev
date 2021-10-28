@@ -10,7 +10,7 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
 import 'firebase/auth'
 
 // Firebase Configuration and Object
-import db, { firebaseConfig } from './firebase-config'
+import db, { storage, firebaseConfig } from './firebase-config'
 
 // Setting method for when a new user joins the system
 firebase.auth().onAuthStateChanged((user) => {
@@ -40,7 +40,7 @@ const App = () => {
         <FirestoreProvider firebase={firebase}>
           <Navbar />
           {/* Need to pass DB through to routes so that it can be passed to any component */}
-          <Routes db={db} />
+          <Routes db={db} storage={storage}/>
         </FirestoreProvider>
 
         {/* <Footer /> */}

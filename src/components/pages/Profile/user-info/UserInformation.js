@@ -5,6 +5,7 @@ import "./UserInformation.css";
 import UserBioForm from './EditBioForm';
 import EditBioButton from './EditBioButton';
 import EditStatusButton from './EditStatusButton';
+import UploadFileButton from './UploadFileButton';
 
 class UserInformation extends React.Component {
 
@@ -25,7 +26,8 @@ class UserInformation extends React.Component {
                         <h1>Status:</h1>
                         <p>{data.status}</p>
                         <EditStatusButton id={firebase.auth().currentUser.uid} db={this.props.db}/>
-                    
+
+                        <UploadFileButton storage={this.props.storage}/>
                     </div>);
                 }
             }}

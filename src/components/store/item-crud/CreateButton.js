@@ -29,7 +29,7 @@ function AddButton(props) {
             </DialogTitle>
 
             <DialogContent>
-                <AddItemForm store_id={props.store_id} db={props.db}/>
+                <AddItemForm store_id={props.store_id} db={props.db} storage={props.storage} store_name={props.store_name}/>
             </DialogContent>
 
             <DialogActions>
