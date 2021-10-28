@@ -17,6 +17,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { ref, getDownloadURL } from "firebase/storage";
+import "./Card.css"
 
 function CardItem(props) {
   const [open, setOpen] = useState(false)
@@ -27,7 +28,7 @@ function CardItem(props) {
 
   return <><Card sx={{ maxWidth: 345, margin: 1 }}>
     <CardActionArea onClick={event => { setOpen(!open) }}>
-      <img src="/images/default-image.jpg" alt="Image" id="itemPhoto" />
+      <img src="/images/default-image.jpg" alt="Image" id={props.data.id} className="cardImg"/>
       {getImage(props)}
 
       <CardContent>
@@ -75,7 +76,7 @@ function getImage(props) {
     fileRef.getDownloadURL().then((url) => {
       console.log(url)
 
-      const img = document.getElementById("itemPhoto")
+      const img = document.getElementById(props.data.id)
       img.setAttribute('src', url);
     })
   }
