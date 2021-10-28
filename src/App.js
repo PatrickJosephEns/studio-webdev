@@ -12,6 +12,13 @@ import 'firebase/auth'
 // Firebase Configuration and Object
 import db, { storage, firebaseConfig } from './firebase-config'
 
+// Set onload function to increment a view count by 1
+window.onload = () => {
+  db.collection("users").doc("stats").update({
+    count: firebase.firestore.FieldValue.increment(1)
+  })
+}
+
 // Setting method for when a new user joins the system
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
@@ -40,7 +47,7 @@ const App = () => {
         <FirestoreProvider firebase={firebase}>
           <Navbar />
           {/* Need to pass DB through to routes so that it can be passed to any component */}
-          <Routes db={db} storage={storage}/>
+          <Routes db={db} storage={storage} />
         </FirestoreProvider>
 
         {/* <Footer /> */}

@@ -5,6 +5,12 @@ import DisplayModel from './DisplayModel';
 import ReadStores from '../../store/store-crud/ReadStores';
 import { FirebaseAuthConsumer, IfFirebaseAuthed } from "@react-firebase/auth";
 
+// React-firestore
+import { FirestoreDocument } from 'react-firestore';
+
+// Counter
+import CountUp from 'react-countup';
+
 // MUI
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -14,6 +20,11 @@ import { ButtonBase } from '@mui/material';
 import Container from '@mui/material/Container';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@mui/material/Tooltip';
+import {
+  createTheme,
+  responsiveFontSizes,
+  ThemeProvider,
+} from '@mui/material/styles';
 
 // Dialog
 import Dialog from '@material-ui/core/Dialog';
@@ -28,6 +39,10 @@ const paperHeight = 220;
 const paperWidth = 250;
 const paperPadding = '15px'
 const middleDif = 50;
+
+// Counter Theme
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
 
 function Home(props) {
   const [open, setOpen] = useState(false)
@@ -72,9 +87,15 @@ function Home(props) {
 
             <Grid item>
               <Paper elevation={5} sx={{ height: paperHeight, width: paperWidth, padding: paperPadding }}>
-                <Typography variant="subtitle1" component="div">
-                  To make a store at The Mall, click on your <a href="/profile">Profile</a> and than scroll down to add a store. You can now add items to your new store
-                </Typography>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="subtitle" component="div">
+                    View Counter
+                  </Typography>
+
+                  <Typography variant="h2" component="div">
+                    {view_counter()}
+                  </Typography>
+                </ThemeProvider>
               </Paper>
             </Grid>
           </Grid>
@@ -82,11 +103,11 @@ function Home(props) {
 
 
         <Row>
-          <ReadStores storage={props.storage} db={props.db}/>
+          <ReadStores storage={props.storage} db={props.db} />
         </Row>
       </Container>
 
-      {/* HIDDEN DIALOG */}
+      {/* KEYBOARD DIALOG */}
       <Dialog
         fullWidth={true}
         maxWidth={"md"}
@@ -95,7 +116,7 @@ function Home(props) {
       >
         <DialogContent>
           <div id="bigKeyboard">
-            <DisplayModel model_no={1} />
+            <DisplayModel model_no={1} controls={true} />
           </div>
         </DialogContent>
 
@@ -107,6 +128,19 @@ function Home(props) {
       </Dialog>
     </>
   );
+}
+
+function view_counter() {
+  return (<FirestoreDocument
+    path={"users/stats"}
+    render={({ isLoading, data }) => {
+      if (isLoading) {
+        return ("Loading Counter");
+      } else {
+        return <CountUp end={data.count} duration={3} />
+      }
+    }}
+  />)
 }
 
 export default Home;

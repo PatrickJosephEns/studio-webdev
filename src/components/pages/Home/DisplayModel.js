@@ -7,6 +7,8 @@ import KeyboardModel from "./models/KeyboardModel";
 function Display_model(props) {
     const ref = useRef();
 
+    var userControls = props.controls ? true : false
+
     return <Canvas shadows dpr={[1, 2]} camera={{ fov: 50, position: [5, 8, 5] }}>
         <Suspense fallback={null}>
             <Stage
@@ -18,7 +20,11 @@ function Display_model(props) {
                 {get_model(props.model_no)}
             </Stage>
         </Suspense>
-        <OrbitControls ref={ref} autoRotate enableZoom={false} enablePan={false} enableRotate={false} />
+        <OrbitControls ref={ref} 
+        autoRotate={!userControls}
+        enableZoom={userControls} 
+        enablePan={userControls} 
+        enableRotate={userControls} />
     </Canvas>
 
 }
