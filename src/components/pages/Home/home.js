@@ -91,6 +91,7 @@ function Home(props) {
                   <Typography variant="subtitle" component="div">
                     View Counter
                   </Typography>
+                  <br></br>
 
                   <Typography variant="h2" component="div">
                     {view_counter()}
@@ -135,7 +136,7 @@ function view_counter() {
     path={"users/stats"}
     render={({ isLoading, data }) => {
       if (isLoading) {
-        return ("Loading Counter");
+        return ("...");
       } else {
         return <CountUp end={data.count} duration={3} />
       }

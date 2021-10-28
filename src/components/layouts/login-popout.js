@@ -12,9 +12,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import StarIcon from '@material-ui/icons/Star';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 function LoginButton(props) {
@@ -55,33 +53,9 @@ function LoginButton(props) {
                             // handleClose()
                         }}>
                             <ListItemIcon>
-                                <StarIcon />
+                                <GoogleIcon />
                             </ListItemIcon>
                             <ListItemText primary="Google" />
-                        </ListItem>
-
-                        <ListItem button onClick={() => {
-                            const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
-                            handleClose();
-                            firebase.auth().signInWithPopup(facebookAuthProvider);
-
-                            
-                        }}>
-                            <ListItemIcon>
-                                <FacebookIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Facebook" />
-                        </ListItem>
-
-                        <ListItem button onClick={() => {
-                            const twitterAuthProvider = new firebase.auth.TwitterAuthProvider();
-                            handleClose();
-                            firebase.auth().signInWithPopup(twitterAuthProvider);
-                        }}>
-                            <ListItemIcon>
-                                <TwitterIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Twitter" />
                         </ListItem>
 
                         <ListItem button onClick={() => {

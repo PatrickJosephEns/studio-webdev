@@ -43,6 +43,10 @@ firebase.auth().onAuthStateChanged((user) => {
 const App = () => {
   return (
     <FirebaseAuthProvider {...firebaseConfig} firebase={firebase}>
+
+      {/* Background  by Kieran Brett */}
+      <img src={'/images/Wavey-Background.png'} alt="img of Kieran Brett" id="background" />
+
       <React.Fragment>
         <FirestoreProvider firebase={firebase}>
           <Navbar />
