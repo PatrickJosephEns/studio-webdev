@@ -12,6 +12,10 @@ import TextField from "@material-ui/core/TextField";
 // Layout
 import Grid from "@material-ui/core/Grid";
 
+var file = null;
+var storageRef = null;
+var fileRef = null;
+
 class AddItemForm extends React.Component {
   constructor() {
     super();
@@ -25,14 +29,26 @@ class AddItemForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  onChange = (e) => {
+    file = e.target.files[0];
+    storageRef = this.props.storage.ref()
+    // Add the store name to the files path so it is kept with its store
+    fileRef = storageRef.child(this.props.store_name + '/' + file.name)
+  }
+
   handleChange(e) {
-    console.log(e.target.name);
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
 
   handleSubmit(e) {
+    if (fileRef) {
+      fileRef.put(file).then(() => {
+        console.log("Uploaded a file")
+      })
+    }
+
     this.props.db
       .collection("stores")
       .doc(this.props.store_id)
@@ -41,6 +57,7 @@ class AddItemForm extends React.Component {
         text: this.state.item,
         desc: this.state.desc,
         category: this.state.category,
+        image: fileRef ? fileRef.fullPath : null,
       });
 
     this.setState({
@@ -56,36 +73,40 @@ class AddItemForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <Grid container direction="column" justifyContent="space-between" alignItems="flex-start" spacing={1}>
-        <TextField name="item" label="Item Name" onChange={this.handleChange} />
-        <TextField name="desc" label="Item Description" onChange={this.handleChange} />
+          <InputLabel>Image/3D Model</InputLabel>
+          <input type="file" onChange={this.onChange} />
+          <br></br>
 
-        <FormControl>
-          <InputLabel>Category</InputLabel>
-          <Select
-            native
-            name="category"
-            value={this.state.category}
-            onChange={this.handleChange}
-            input={<Input id="demo-dialog-native" />}
-          >
-            {/* All item categories here! */}
-            <option aria-label="None" value="" />
-            <option value={"Tech"}>Clothing & Jewellery</option>
-            <option value={"Clothes"}>Home & Garden</option>
-            <option value={"Food"}>Sports & Outdoors</option>
-            <option value={"Food"}>Electronics & Gaming</option>
-            <option value={"Food"}>Toys & Baby</option>
-            <option value={"Food"}>Books, Music & Movies</option>
-            <option value={"Food"}>Health & Beauty</option>
-            <option value={"Food"}>Food, Pets & Household</option>
-            <option value={"Food"}>Craft, Party & Stationery</option>
-            <option value={"Food"}>Gifting</option>
-          </Select>
-        </FormControl>
+          <TextField name="item" label="Item Name" onChange={this.handleChange} />
+          <TextField name="desc" label="Item Description" onChange={this.handleChange} />
 
-        <Button color="primary" size="small" variant="contained" type="submit">
-          Add
-        </Button>
+          <FormControl>
+            <InputLabel>Category</InputLabel>
+            <Select
+              native
+              name="category"
+              value={this.state.category}
+              onChange={this.handleChange}
+              input={<Input id="demo-dialog-native" />}
+            >
+              {/* All item categories here! */}
+              <option aria-label="None" value="" />
+              <option value={"Tech"}>Clothing & Jewellery</option>
+              <option value={"Clothes"}>Home & Garden</option>
+              <option value={"Food"}>Sports & Outdoors</option>
+              <option value={"Food"}>Electronics & Gaming</option>
+              <option value={"Food"}>Toys & Baby</option>
+              <option value={"Food"}>Books, Music & Movies</option>
+              <option value={"Food"}>Health & Beauty</option>
+              <option value={"Food"}>Food, Pets & Household</option>
+              <option value={"Food"}>Craft, Party & Stationery</option>
+              <option value={"Food"}>Gifting</option>
+            </Select>
+          </FormControl>
+
+          <Button color="primary" size="small" variant="contained" type="submit">
+            Add
+          </Button>
         </Grid>
       </form>
     );

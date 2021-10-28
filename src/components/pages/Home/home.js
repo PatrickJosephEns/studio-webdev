@@ -29,7 +29,7 @@ const paperWidth = 250;
 const paperPadding = '15px'
 const middleDif = 50;
 
-function Home() {
+function Home(props) {
   const [open, setOpen] = useState(false)
 
   const handleClose = () => {
@@ -82,7 +82,7 @@ function Home() {
 
 
         <Row>
-          <ReadStores />
+          <ReadStores storage={props.storage} db={props.db}/>
         </Row>
       </Container>
 

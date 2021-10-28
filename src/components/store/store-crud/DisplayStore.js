@@ -30,7 +30,7 @@ class DisplayStore extends React.Component {
             </AccordionDetails>
 
             <AccordionDetails>
-                <ReadStoreItems store_id={this.props.data.id} />
+                <ReadStoreItems store_id={this.props.data.id} storage={this.props.storage}/>
             </AccordionDetails>
         </Accordion>
     }
@@ -41,7 +41,7 @@ class DisplayStore extends React.Component {
                 return <>
                     <DeleteButton data={this.props.data} db={this.props.db} />
                     <EditButton store_name={this.props.data.store_name} id={this.props.data.id} db={this.props.db} />
-                    <AddButton store_id={this.props.data.id} store_name={this.props.data.store_name} db={this.props.db} />
+                    <AddButton store_id={this.props.data.id} store_name={this.props.data.store_name} db={this.props.db} storage={this.props.storage} />
                 </>
             }
         }

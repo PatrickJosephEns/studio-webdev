@@ -16,6 +16,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { ref, getDownloadURL } from "firebase/storage";
+
 function CardItem(props) {
   const [open, setOpen] = useState(false)
 
@@ -25,11 +27,9 @@ function CardItem(props) {
 
   return <><Card sx={{ maxWidth: 345, margin: 1 }}>
     <CardActionArea onClick={event => { setOpen(!open) }}>
-      <CardMedia
-        component="img"
-        height="100"
-        image="/images/default-image.jpg"
-      />
+      <img src="/images/default-image.jpg" alt="Image" id="itemPhoto" />
+      {getImage(props)}
+
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {props.data.text}
@@ -65,6 +65,20 @@ function CardItem(props) {
       </DialogActions>
     </Dialog>
   </>
+}
+
+function getImage(props) {
+  if (props.data.image) {
+    const storageRef = props.storage.ref();
+    const fileRef = storageRef.child(props.data.image)
+
+    fileRef.getDownloadURL().then((url) => {
+      console.log(url)
+
+      const img = document.getElementById("itemPhoto")
+      img.setAttribute('src', url);
+    })
+  }
 }
 
 export default CardItem;

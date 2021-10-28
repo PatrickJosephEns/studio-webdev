@@ -24,7 +24,7 @@ class Profile extends React.Component {
                                 <UserInformation db={this.props.db} storage={this.props.storage}/>
                             </div>
                             <CreateStore db={this.props.db} />
-                            <ReadUserStores db={this.props.db} />
+                            <ReadUserStores db={this.props.db} storage={this.props.storage}/>
                     </div>
                 </>
             }}

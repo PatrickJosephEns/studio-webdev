@@ -18,7 +18,7 @@ class ReadStores extends React.Component {
                     return (<>
                         {data.map(data => (
                             <div style={{marginTop: '15px'}}>
-                                <DisplayStore db={this.props.db} data={data} />
+                                <DisplayStore db={this.props.db} storage={this.props.storage} data={data} />
                             </div>
                         ))}
                     </>);
