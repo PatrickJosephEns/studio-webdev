@@ -2,3 +2,10 @@
     max-width: 200px;
     max-height: 200px;
 }
+
+.cardImg-Big {
+    width: 80%;
+    overflow: hidden;
+    height: auto;
+    object-fit: scale-down;
+}

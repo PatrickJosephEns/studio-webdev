@@ -28,8 +28,8 @@ function CardItem(props) {
 
   return <><Card sx={{ maxWidth: 345, margin: 1 }}>
     <CardActionArea onClick={event => { setOpen(!open) }}>
-      <img src="/images/default-image.jpg" alt="Image" id={props.data.id} className="cardImg"/>
-      {getImage(props)}
+      <img src="/images/default-image.jpg" alt="Image" id={props.data.id} className="cardImg" />
+      {getImage(props, props.data.id)}
 
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -54,7 +54,8 @@ function CardItem(props) {
       </DialogTitle>
 
       <DialogContent>
-        <h1>3d model and images will go here</h1>
+        <img src="/images/default-image.jpg" alt="Image" id={props.data.id + "-popout"} className="cardImg-Big" />
+        {getImage(props, props.data.id + "-popout")}
         {props.data.desc}
       </DialogContent>
 
@@ -68,7 +69,7 @@ function CardItem(props) {
   </>
 }
 
-function getImage(props) {
+function getImage(props, imgId) {
   if (props.data.image) {
     const storageRef = props.storage.ref();
     const fileRef = storageRef.child(props.data.image)
@@ -76,10 +77,14 @@ function getImage(props) {
     fileRef.getDownloadURL().then((url) => {
       console.log(url)
 
-      const img = document.getElementById(props.data.id)
-      img.setAttribute('src', url);
+      const img = document.getElementById(imgId)
+      if (img) {
+        img.setAttribute('src', url);
+      }
     })
   }
 }
+
+
 
 export default CardItem;
