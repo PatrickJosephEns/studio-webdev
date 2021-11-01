@@ -1,7 +1,4 @@
 import React from 'react';
-import { FirestoreCollection } from 'react-firestore';
-
-import DisplayStore from './DisplayStore';
 
 class ReadStores extends React.Component {
 

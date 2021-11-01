@@ -1,4 +1,4 @@
-
+// material UI imports
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -28,7 +28,6 @@ function NavBar() {
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" href="/">
           <HomeIcon />
         </IconButton>
-
         <Typography variant="h6" className={classes.title} ahref="/">
           The Mall
         </Typography>

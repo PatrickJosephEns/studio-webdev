@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Button from '@material-ui/core/Button';
 
 class StoreForm extends React.Component {
@@ -8,7 +7,6 @@ class StoreForm extends React.Component {
         this.state = {
             text: ''
         }
-
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -27,7 +25,6 @@ class StoreForm extends React.Component {
         this.setState({
             text: ''
         })
-
         e.preventDefault();
     }
 

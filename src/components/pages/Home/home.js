@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 
 import DisplayModel from './DisplayModel';
 import ReadStores from '../../store/store-crud/ReadStores';
-import { FirebaseAuthConsumer, IfFirebaseAuthed } from "@react-firebase/auth";
 
 // React-firestore
 import { FirestoreDocument } from 'react-firestore';
@@ -15,7 +14,6 @@ import CountUp from 'react-countup';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Showcase from './models/Showcase';
 import { ButtonBase } from '@mui/material';
 import Container from '@mui/material/Container';
 import Button from '@material-ui/core/Button';
