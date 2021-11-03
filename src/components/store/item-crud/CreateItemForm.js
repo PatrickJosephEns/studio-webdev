@@ -42,10 +42,24 @@ class AddItemForm extends React.Component {
   uploadImageAsPromise(imageFile, store_name) {
     return new Promise(function (resolve, reject) {
       var storageRef = firebase.storage().ref(store_name + "/" + imageFile.name);
-      // Reference to all files
-      folderRef.push(storageRef.fullPath)
-      //Upload file
-      storageRef.put(imageFile);
+
+      var extension = imageFile.name.split(".").pop();
+      switch (extension) {
+        case 'bin':
+        case 'jpg':
+        case 'png':
+        case 'gltf':
+        case 'stl':
+        case 'jpeg':
+          // Reference to all files
+          folderRef.push(storageRef.fullPath)
+          //Upload file
+          storageRef.put(imageFile);
+          break;
+
+        default:
+          break;
+      }
     });
   }
 
