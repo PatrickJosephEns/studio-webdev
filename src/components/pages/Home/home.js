@@ -55,7 +55,7 @@ function Home(props) {
         <div id="home">
           <Tooltip title="Click the phone!" placement="left">
             <div id="homeModel">
-              <DisplayModel />
+              <DisplayModel model_no={2}/>
             </div>
           </Tooltip>
           <div class="title">
