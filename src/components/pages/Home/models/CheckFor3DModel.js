@@ -14,13 +14,17 @@ export default function CheckFor3DModel(props) {
 
             // Async, cant return anything. Dont know what to do
             fileRef.getDownloadURL().then((url) => {
-
                 console.log(url) // Debug
+
+                // Returns [Object, Object]
                 // document.getElementById(props.data.id + "-model").innerHTML = {
                 //     __html: Display_model(url)
                 // }
 
-                ReactDOM.render(<Display_model model_no={1} url={url} controls={true} />, document.getElementById(props.data.id + "-model"))
+                // Makes page not be a DOM element anymore?
+                // ReactDOM.render(<Display_model model_no={1} url={url} controls={true} />, document.getElementById(props.data.id + "-model"))
+
+                // Doesnt Return
                 // return <Display_model url={url} controls={true} />
             })
 

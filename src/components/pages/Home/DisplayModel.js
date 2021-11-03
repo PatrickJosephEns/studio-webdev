@@ -7,14 +7,14 @@ import KeyboardModel from "./models/KeyboardModel";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 function Display_model(props) {
-    // const ref = useRef();
+    const ref = useRef();
 
     var userControls = props.controls ? true : false
 
     return <Canvas shadows dpr={[1, 2]} camera={{ fov: 50, position: [5, 8, 5] }}>
         <Suspense fallback={null}>
             <Stage
-                // controls={ref}
+                controls={ref}
                 preset="rembrandt"
                 intensity={1}
                 environment="city"
@@ -23,7 +23,7 @@ function Display_model(props) {
             </Stage>
         </Suspense>
         <OrbitControls 
-            // ref={ref}
+            ref={ref}
             autoRotate={!userControls}
             enableZoom={userControls}
             enablePan={userControls}
