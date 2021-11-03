@@ -55,6 +55,9 @@ function CardItem(props) {
 
       <DialogContent>
         {/* Displays either 3D Model or Images */}
+        <div id={props.data.id + '-model'} class={'threed-model'}>
+          {/* Empty div for content to be added too */}
+        </div>
         <CheckFor3DModel data={props.data} storage={props.storage} />
         {props.data.desc}
       </DialogContent>

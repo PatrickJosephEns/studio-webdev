@@ -30,6 +30,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+
 // Just wrap anything in this <Row>CONTENT HERE</Row>, and it will automatically create a styled div
 const Row = ({ children }) => <div className="row justify-content-center panel">{children}</div>
 

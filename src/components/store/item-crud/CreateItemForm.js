@@ -16,6 +16,7 @@ var file = null;
 var storageRef = null;
 var fileRef = null;
 
+
 class AddItemForm extends React.Component {
   constructor() {
     super();
@@ -49,6 +50,8 @@ class AddItemForm extends React.Component {
       })
     }
 
+    console.log(fileRef)
+    
     this.props.db
       .collection("stores")
       .doc(this.props.store_id)
@@ -56,7 +59,6 @@ class AddItemForm extends React.Component {
       .add({
         text: this.state.item,
         desc: this.state.desc,
-        category: this.state.category,
         image: fileRef ? fileRef.fullPath : null,
       });
 
@@ -79,30 +81,6 @@ class AddItemForm extends React.Component {
 
           <TextField name="item" label="Item Name" onChange={this.handleChange} />
           <TextField name="desc" label="Item Description" onChange={this.handleChange} />
-
-          <FormControl>
-            <InputLabel>Category</InputLabel>
-            <Select
-              native
-              name="category"
-              value={this.state.category}
-              onChange={this.handleChange}
-              input={<Input id="demo-dialog-native" />}
-            >
-              {/* All item categories here! */}
-              <option aria-label="None" value="" />
-              <option value={"Tech"}>Clothing & Jewellery</option>
-              <option value={"Clothes"}>Home & Garden</option>
-              <option value={"Food"}>Sports & Outdoors</option>
-              <option value={"Food"}>Electronics & Gaming</option>
-              <option value={"Food"}>Toys & Baby</option>
-              <option value={"Food"}>Books, Music & Movies</option>
-              <option value={"Food"}>Health & Beauty</option>
-              <option value={"Food"}>Food, Pets & Household</option>
-              <option value={"Food"}>Craft, Party & Stationery</option>
-              <option value={"Food"}>Gifting</option>
-            </Select>
-          </FormControl>
 
           <Button color="primary" size="small" variant="contained" type="submit">
             Add
