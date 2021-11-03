@@ -5,7 +5,6 @@ import Display_model from '../DisplayModel';
 // empty react component
 export default function CheckFor3DModel(props) {
     if (props.data.image) {
-        console.log("nope")
         // Get the file name than check the extension
         const storageRef = props.storage.ref();
         const fileRef = storageRef.child(props.data.image)
