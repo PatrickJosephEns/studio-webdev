@@ -20,25 +20,23 @@ function Display_model(props) {
                 {get_model(props.model_no)}
             </Stage>
         </Suspense>
-        <OrbitControls ref={ref} 
-        autoRotate={!userControls}
-        enableZoom={userControls} 
-        enablePan={userControls} 
-        enableRotate={userControls} />
+        <OrbitControls ref={ref}
+            autoRotate={!userControls}
+            enableZoom={userControls}
+            enablePan={userControls}
+            enableRotate={userControls} />
     </Canvas>
 
 }
 
 function get_model(model_no) {
-    console.log(model_no)
+    // console.log(model_no) // Debug
     switch (model_no) {
         case 1:
             return <KeyboardModel />
-            break;
 
         default:
             return <IphoneModel />
-            break;
     }
 }
 

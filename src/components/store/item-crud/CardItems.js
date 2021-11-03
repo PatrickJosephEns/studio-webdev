@@ -16,6 +16,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { ref, getDownloadURL } from "firebase/storage";
 import "./Card.css"
+import DeleteButton from './DeleteItemButton';
 
 function CardItem(props) {
   const [open, setOpen] = useState(false)
@@ -58,10 +59,10 @@ function CardItem(props) {
       </DialogContent>
 
       <DialogActions>
+        <DeleteButton data={props.data} store_id={props.store_id} db={props.db} />
         <Button autoFocus onClick={handleClose} color="primary">
           Exit
         </Button>
-
       </DialogActions>
     </Dialog>
   </>
@@ -73,8 +74,7 @@ function getImage(props, imgId) {
     const fileRef = storageRef.child(props.data.image)
 
     fileRef.getDownloadURL().then((url) => {
-      console.log(url)
-
+      // console.log(url) // Debug
       const img = document.getElementById(imgId)
       if (img) {
         img.setAttribute('src', url);

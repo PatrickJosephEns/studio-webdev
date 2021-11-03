@@ -1,5 +1,10 @@
 import React from 'react';
 
+// Dont delete this
+import { FirestoreCollection } from 'react-firestore';
+
+import DisplayStore from './DisplayStore';
+
 class ReadStores extends React.Component {
 
     displayStores() {
