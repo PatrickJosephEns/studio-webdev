@@ -1,5 +1,7 @@
 import React from "react";
 
+import firebase from "@firebase/app";
+
 import Button from "@material-ui/core/Button";
 
 // Data Inputs
@@ -12,9 +14,7 @@ import TextField from "@material-ui/core/TextField";
 // Layout
 import Grid from "@material-ui/core/Grid";
 
-var file = null;
-var storageRef = null;
-var fileRef = null;
+var folderRef = [];
 
 class AddItemForm extends React.Component {
   constructor() {
@@ -30,10 +30,37 @@ class AddItemForm extends React.Component {
   }
 
   onChange = (e) => {
-    file = e.target.files[0];
-    storageRef = this.props.storage.ref()
-    // Add the store name to the files path so it is kept with its store
-    fileRef = storageRef.child(this.props.store_name + '/' + file.name)
+    folderRef = [];
+
+    for (var i = 0; i < e.target.files.length; i++) {
+      var imageFile = e.target.files[i];
+
+      this.uploadImageAsPromise(imageFile, this.props.store_name);
+    }
+  }
+
+  uploadImageAsPromise(imageFile, store_name) {
+    return new Promise(function (resolve, reject) {
+      var storageRef = firebase.storage().ref(store_name + "/" + imageFile.name);
+
+      var extension = imageFile.name.split(".").pop();
+      switch (extension) {
+        case 'bin':
+        case 'jpg':
+        case 'png':
+        case 'gltf':
+        case 'stl':
+        case 'jpeg':
+          // Reference to all files
+          folderRef.push(storageRef.fullPath)
+          //Upload file
+          storageRef.put(imageFile);
+          break;
+
+        default:
+          break;
+      }
+    });
   }
 
   handleChange(e) {
@@ -43,10 +70,8 @@ class AddItemForm extends React.Component {
   }
 
   handleSubmit(e) {
-    if (fileRef) {
-      fileRef.put(file).then(() => {
-        console.log("Uploaded a file")
-      })
+    if (folderRef) {
+      console.log(folderRef)
     }
 
     this.props.db
@@ -56,8 +81,11 @@ class AddItemForm extends React.Component {
       .add({
         text: this.state.item,
         desc: this.state.desc,
-        category: this.state.category,
-        image: fileRef ? fileRef.fullPath : null,
+        image: folderRef ? folderRef[0] : null,
+        image2: folderRef[1] ? folderRef[1] : null,
+        image3: folderRef[2] ? folderRef[2] : null,
+        image4: folderRef[3] ? folderRef[3] : null,
+        image5: folderRef[4] ? folderRef[4] : null,
       });
 
     this.setState({
@@ -74,35 +102,11 @@ class AddItemForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <Grid container direction="column" justifyContent="space-between" alignItems="flex-start" spacing={1}>
           <InputLabel>Image/3D Model</InputLabel>
-          <input type="file" onChange={this.onChange} />
+          <input type="file" multiple="multiple" onChange={this.onChange} />
           <br></br>
 
           <TextField name="item" label="Item Name" onChange={this.handleChange} />
           <TextField name="desc" label="Item Description" onChange={this.handleChange} />
-
-          <FormControl>
-            <InputLabel>Category</InputLabel>
-            <Select
-              native
-              name="category"
-              value={this.state.category}
-              onChange={this.handleChange}
-              input={<Input id="demo-dialog-native" />}
-            >
-              {/* All item categories here! */}
-              <option aria-label="None" value="" />
-              <option value={"Tech"}>Clothing & Jewellery</option>
-              <option value={"Clothes"}>Home & Garden</option>
-              <option value={"Food"}>Sports & Outdoors</option>
-              <option value={"Food"}>Electronics & Gaming</option>
-              <option value={"Food"}>Toys & Baby</option>
-              <option value={"Food"}>Books, Music & Movies</option>
-              <option value={"Food"}>Health & Beauty</option>
-              <option value={"Food"}>Food, Pets & Household</option>
-              <option value={"Food"}>Craft, Party & Stationery</option>
-              <option value={"Food"}>Gifting</option>
-            </Select>
-          </FormControl>
 
           <Button color="primary" size="small" variant="contained" type="submit">
             Add

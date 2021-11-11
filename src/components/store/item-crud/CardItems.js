@@ -16,6 +16,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { ref, getDownloadURL } from "firebase/storage";
 import "./Card.css"
+import DeleteButton from './DeleteItemButton';
+import CheckFor3DModel from '../../pages/Home/models/CheckFor3DModel';
 
 function CardItem(props) {
   const [open, setOpen] = useState(false)
@@ -52,16 +54,19 @@ function CardItem(props) {
       </DialogTitle>
 
       <DialogContent>
-        <img src="/images/default-image.jpg" alt="Image" id={props.data.id + "-popout"} className="cardImg-Big" />
-        {getImage(props, props.data.id + "-popout")}
+        {/* Displays either 3D Model or Images */}
+        <div id={props.data.id + '-model'} class={'threed-model'}>
+          {/* Empty div for content to be added too */}
+        </div>
+        <CheckFor3DModel data={props.data} storage={props.storage} />
         {props.data.desc}
       </DialogContent>
 
       <DialogActions>
+        <DeleteButton data={props.data} store_id={props.store_id} db={props.db} />
         <Button autoFocus onClick={handleClose} color="primary">
           Exit
         </Button>
-
       </DialogActions>
     </Dialog>
   </>
@@ -73,8 +78,7 @@ function getImage(props, imgId) {
     const fileRef = storageRef.child(props.data.image)
 
     fileRef.getDownloadURL().then((url) => {
-      console.log(url)
-
+      // console.log(url) // Debug
       const img = document.getElementById(imgId)
       if (img) {
         img.setAttribute('src', url);
