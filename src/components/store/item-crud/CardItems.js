@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import firebase from '@firebase/app';
 
 // Material UI
 import Card from '@mui/material/Card';
@@ -63,13 +64,22 @@ function CardItem(props) {
       </DialogContent>
 
       <DialogActions>
-        <DeleteButton data={props.data} store_id={props.store_id} db={props.db} />
+        {deleteButton(props)}
         <Button autoFocus onClick={handleClose} color="primary">
           Exit
         </Button>
       </DialogActions>
     </Dialog>
   </>
+}
+
+function deleteButton(props) {
+  if (firebase.auth().currentUser) {
+    if (props.owner_id == firebase.auth().currentUser.uid) {
+      return <DeleteButton data={props.data} store_id={props.store_id} db={props.db} />
+    }
+  }
+  
 }
 
 function getImage(props, imgId) {
