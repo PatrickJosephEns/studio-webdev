@@ -137,7 +137,7 @@ function view_counter() {
       if (isLoading) {
         return ("...");
       } else {
-        return <CountUp end={data.count} duration={3} />
+        return <CountUp end={data.count} duration={1} />
       }
     }}
   />)
