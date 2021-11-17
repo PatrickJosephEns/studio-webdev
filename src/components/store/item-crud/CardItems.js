@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import firebase from '@firebase/app';
 
 // Material UI
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
@@ -18,6 +17,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { ref, getDownloadURL } from "firebase/storage";
 import "./Card.css"
+import DeleteButton from './DeleteItemButton';
+import CheckFor3DModel from '../../pages/Home/models/CheckFor3DModel';
 
 function CardItem(props) {
   const [open, setOpen] = useState(false)
@@ -54,19 +55,31 @@ function CardItem(props) {
       </DialogTitle>
 
       <DialogContent>
-        <img src="/images/default-image.jpg" alt="Image" id={props.data.id + "-popout"} className="cardImg-Big" />
-        {getImage(props, props.data.id + "-popout")}
+        {/* Displays either 3D Model or Images */}
+        <div id={props.data.id + '-model'} class={'threed-model'}>
+          {/* Empty div for content to be added too */}
+        </div>
+        <CheckFor3DModel data={props.data} storage={props.storage} />
         {props.data.desc}
       </DialogContent>
 
       <DialogActions>
+        {deleteButton(props)}
         <Button autoFocus onClick={handleClose} color="primary">
           Exit
         </Button>
-
       </DialogActions>
     </Dialog>
   </>
+}
+
+function deleteButton(props) {
+  if (firebase.auth().currentUser) {
+    if (props.owner_id == firebase.auth().currentUser.uid) {
+      return <DeleteButton data={props.data} store_id={props.store_id} db={props.db} />
+    }
+  }
+  
 }
 
 function getImage(props, imgId) {
@@ -75,8 +88,7 @@ function getImage(props, imgId) {
     const fileRef = storageRef.child(props.data.image)
 
     fileRef.getDownloadURL().then((url) => {
-      console.log(url)
-
+      // console.log(url) // Debug
       const img = document.getElementById(imgId)
       if (img) {
         img.setAttribute('src', url);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FirestoreCollection } from 'react-firestore';
-import CardItem from './cards/CardItems'
+import CardItem from './CardItems'
 
 class ReadStoreItems extends React.Component {
     displayUserStores() {
@@ -14,9 +14,9 @@ class ReadStoreItems extends React.Component {
                 } else {
                     return (<div className='row'>
                         {data.map(data => (
-                            <CardItem data={data} storage={this.props.storage} />
-                      ))}
-                       </div> 
+                            <CardItem data={data} storage={this.props.storage} store_id={this.props.store_id} owner_id={this.props.owner_id} db={this.props.db} />
+                        ))}
+                    </div>
                     );
                 }
             }}

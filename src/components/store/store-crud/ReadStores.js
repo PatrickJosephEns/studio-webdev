@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Dont delete this
 import { FirestoreCollection } from 'react-firestore';
 
 import DisplayStore from './DisplayStore';

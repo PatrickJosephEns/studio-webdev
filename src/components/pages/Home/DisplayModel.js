@@ -1,8 +1,10 @@
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useRef, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stage } from "@react-three/drei";
 import IphoneModel from "./models/iphoneModel";
 import KeyboardModel from "./models/KeyboardModel";
+
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 function Display_model(props) {
     const ref = useRef();
@@ -17,28 +19,39 @@ function Display_model(props) {
                 intensity={1}
                 environment="city"
             >
-                {get_model(props.model_no)}
+                {Get_model(props.model_no, props)}
             </Stage>
         </Suspense>
-        <OrbitControls ref={ref} 
-        autoRotate={!userControls}
-        enableZoom={userControls} 
-        enablePan={userControls} 
-        enableRotate={userControls} />
+        <OrbitControls 
+            ref={ref}
+            autoRotate={!userControls}
+            enableZoom={userControls}
+            enablePan={userControls}
+            enableRotate={userControls} />
     </Canvas>
 
 }
 
-function get_model(model_no) {
-    console.log(model_no)
+function Get_model(model_no, props) {
     switch (model_no) {
         case 1:
             return <KeyboardModel />
-            break;
+
+        case 2:
+            return <IphoneModel />
 
         default:
-            return <IphoneModel />
-            break;
+            const Model = () => {
+                const [model, setModel] = useState()
+
+                useEffect(() => {
+                    new GLTFLoader().load(props.url, setModel)
+                })
+
+                return model ? <primitive object={model.scene} /> : null
+            }
+
+            return Model
     }
 }
 
