@@ -27,7 +27,7 @@ class UserInformation extends React.Component {
                         <p>{data.status}</p>
                         <EditStatusButton id={firebase.auth().currentUser.uid} db={this.props.db}/>
 
-                        <UploadFileButton storage={this.props.storage}/>
+                        {/* <UploadFileButton storage={this.props.storage}/>  */}
                     </div>);
                 }
             }}
