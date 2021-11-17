@@ -1,9 +1,9 @@
 .avatarImg {
-    border: 3px solid rgba(0,0,0,0.3);
+    border: 3px solid rgba(0,0,0,0.2);
     box-shadow: 0px 10px 20px black;
     min-width: 230px;
     min-height: 230px;
-    justify-content: center;
+    margin: auto;
 }
 
 .profile {
@@ -12,9 +12,8 @@
 }
 
 .profile-items {
-    border: black;
-    border-style: solid;
+    /* border: black;
+    border-style: solid; */
     padding: 3%;
-    width: 40%;
-    left: 100%;
+
 }
